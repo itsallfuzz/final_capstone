@@ -15,6 +15,9 @@
     <form method="post">
         {% csrf_token %}
 
+        <!-- Add hidden field to preserve editor comments -->
+        <input type="hidden" name="editor_comments" value="{{ editor_comments }}">
+
         <button
         type="submit"
         name="action"

@@ -19,7 +19,8 @@ from .forms import ArticleForm, NewsletterForm, LoginFormSerializer
 from django.core.mail import send_mass_mail
 from django.conf import settings
 import secrets
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 from datetime import datetime, timedelta
 from hashlib import sha1
 from django.core.mail import EmailMessage
@@ -30,6 +31,9 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+import requests, requests_oauthlib
+from .functions.tweet import Tweet
+from news2u.functions import tweet
 
 
 # Helper functions to check user roles
@@ -107,7 +111,7 @@ def register_publisher(request):
                     )
 
                     # Add to Publisher group
-                    publisher_group = Group.objects.get(
+                    publisher_group, created = Group.objects.get_or_create(
                         name='Publisher')
                     new_user.groups.add(publisher_group)
 
@@ -169,7 +173,7 @@ def register_editor(request):
                 )
 
                 # Add to Editor group
-                editor_group = Group.objects.get(name='Editor')
+                editor_group, created = Group.objects.get_or_create(name='Editor')
                 new_user.groups.add(editor_group)
 
                 Editor.objects.create(
@@ -226,7 +230,8 @@ def register_journalist(request):
                 )
 
                 # Add to Journalist group
-                journalist_group = Group.objects.get(name='Journalist')
+                journalist_group, created = Group.objects.get_or_create(
+                    name='Journalist')
                 new_user.groups.add(journalist_group)
 
                 Journalist.objects.create(
@@ -268,7 +273,8 @@ def register_reader(request):
                     new_user = form.save(commit=False)
                     # Readers are immediately active
                     new_user.is_active = True
-                    new_user.email = form.cleaned_data.get('email')
+                    new_user.email = form.cleaned_data.get(
+                        'email')
                     new_user.save()
 
                 # Create CustomUser profile with role
@@ -280,8 +286,19 @@ def register_reader(request):
                 )
 
                 # Add to Reader group
-                reader_group = Group.objects.get(name='Reader')
+                reader_group, created = Group.objects.get_or_create(
+                    name='Reader')
                 new_user.groups.add(reader_group)
+
+                # If group created for the first time
+                if created:
+                    content_type = ContentType.objects.get_for_model(
+                        Article)
+                    view_permission = Permission.objects.get(
+                        codename='view_article',
+                        content_type=content_type
+                    )
+                    reader_group.permissions.add(view_permission)
 
                 Reader.objects.create(
                     user=new_user,
@@ -470,7 +487,7 @@ def send_article_email(article):
 
     # For articles ready to publish or published independently -
     # send to journalist subscribers
-    if article.status == 'ready_to_publish':
+    if article.status == 'published_independent':
         subscribed_readers = CustomUser.objects.filter(
             role='reader',
             subscribed_journalists=article.journalist
@@ -479,7 +496,7 @@ def send_article_email(article):
 
     # For articles published via publisher -
     # send to publisher subscribers
-    elif article.status == 'ready_to_publish':
+    elif article.status == 'published_publisher':
         subscribed_readers = CustomUser.objects.filter(
             role='reader',
             subscribed_publishers=article.publisher
@@ -550,7 +567,7 @@ def send_newsletter_email(newsletter):
     print(f"Publisher: {newsletter.publisher}")
 
     # For newsletter published independently by journalists
-    if newsletter.status == 'ready_to_publish':
+    if newsletter.status == 'published_newsletter':
         print("Newsletter is independent")
         subscribed_readers = CustomUser.objects.filter(
             role='reader',
@@ -782,7 +799,6 @@ def journalist_dashboard(request):
 # Reader Dashboard
 @login_required
 @user_passes_test(is_reader)
-@permission_required('news2u.view_article', raise_exception=True)
 def reader_dashboard(request):
     """ Show reader dashboard with stats on subscribed content """
     try:
@@ -798,23 +814,25 @@ def reader_dashboard(request):
     # Articles from subscribed journalists and publishers
     total_articles = Article.objects.filter(
         journalist__in=customuser.subscribed_journalists.all(),
-        is_approved=True
+        status__in=['published_independent', 'published_publisher'],
         ).count() + Article.objects.filter(
             publisher__in=customuser.subscribed_publishers.all(),
-            is_approved=True
+            status='published_publisher'
             ).count()
 
     # Newsletters from subscribed journalists and publishers
     total_newsletters = Newsletter.objects.filter(
         journalist__in=customuser.subscribed_journalists.all(),
-        is_approved=True
+        status__in=['published_newsletter',
+                    'published_newsletter_by_publisher']
         ).count() + Newsletter.objects.filter(
             publisher__in=customuser.subscribed_publishers.all(),
-            is_approved=True
+            status__in=['published_newsletter',
+                        'published_newsletter_by_publisher']
             ).count()
 
     context = {
-        'reader': reader,  # Now it's used!
+        'reader': reader,
         'customuser': customuser,
         }
 
@@ -1263,6 +1281,23 @@ def publish_independent(request, article_id):
         article.publisher = None  # No publisher for independent
         article.save()
 
+
+        # Send email to subscribers
+        send_article_email(article)
+
+        # Build the tweet
+        new_article_tweet = (
+            f"New Article Published!\n"
+            f"\n{article.article_preview()}"
+        )
+
+        # Check if article has an image and tweet
+        tweet = Tweet()
+        tweet.make_tweet(
+            new_article_tweet, article.article_photo.path
+            if article.article_photo
+            else None)
+
         messages.success(request, 'Article published independently!')
         return redirect('journalist_dashboard')
 
@@ -1355,38 +1390,6 @@ def submit_to_publisher(request, article_id):
         'form': form,
         'article': article
     })
-
-
-# Article published by Publication House
-@login_required
-@user_passes_test(is_publisher)
-def published_by_publisher(request, article_id):
-    """ Publisher can publish articles assigned to them."""
-
-    try:
-        publisher = Publisher.objects.get(user=request.user)
-        article = Article.objects.get(
-            id=article_id,
-            publisher=publisher,
-            status='ready_to_publish')
-    except (Publisher.DoesNotExist, Article.DoesNotExist):
-        messages.error(request, "Article not found.")
-        return redirect('publish_success')
-
-    if request.method == 'POST':
-        article.status = 'published_publisher'
-        article.published_at = datetime.now()
-        article.save()
-
-        messages.success(request,
-                         f'Article "{article.article_title}" published!')
-        return redirect('publisher_dashboard')
-
-    return render(
-        request,
-        'news2u/published_by_publisher.html',
-        {'article': article}
-        )
 
 
 # Publish Success Message
@@ -1616,14 +1619,16 @@ def accept_article(request, article_id):
         action = request.POST.get('action')
         editor_comments = request.POST.get('editor_comments', '')
 
+        # DEBUG
+        print(f"POST data: {request.POST}")
+        print(f"Action: '{action}'")
+        print(f"Editor comments: '{editor_comments}'")
+
         if action == 'approve':
             article.status = 'ready_to_publish'
             article.is_approved = True
             article.editor_comments = editor_comments
             article.save()
-
-            # Send email to subscribers
-            send_article_email(article)
 
             messages.success(request,
                              f'Article "{article.article_title}"'
@@ -1635,10 +1640,17 @@ def accept_article(request, article_id):
             article.editor_comments = editor_comments
             article.save()
 
+    # Pass the comments from the previous form (review_article) to
+    # the template
+    editor_comments = request.POST.get(
+        'editor_comments', article.editor_comments or '')
+
+
     return render(
         request,
         'news2u/accept_article.html',
-        {'article': article}
+        {'article': article,
+        'editor_comments': editor_comments}
         )
 
 
@@ -1699,8 +1711,12 @@ def decline_article(request, article_id):
             status='awaiting_editor')
 
         if request.method == 'POST':
+            # If article is declined, set status to 'revise'
+            editor_comments = request.POST.get('editor_comments', '')
+
             article.status = 'revise'
             article.is_approved = False
+            article.editor_comments = editor_comments
             article.save()
             messages.success(request,
                              f'Article "{article.article_title}" '
@@ -1751,8 +1767,9 @@ def view_edited_article(request, article_id):
             journalist = Journalist.objects.get(user=user)
             article = Article.objects.get(
                 id=article_id,
-                journalist=journalist
+                journalist=journalist,
                 )
+
         elif is_editor(user):
             editor = Editor.objects.get(user=user)
             article = Article.objects.get(
@@ -2213,9 +2230,26 @@ def publish_by_publisher(request, article_id):
         article.published_at = datetime.now()
         article.save()
 
+        # Send email to subscribers
+        send_article_email(article)
+
+        # Build the tweet
+        new_article_tweet = (
+            f"New Article Published!\n"
+            f"{article.article_title}\n"
+            f"\n{article.article_preview()}"
+        )
+
+        # Check if article has an image
+        tweet = Tweet()
+        tweet.make_tweet(
+            new_article_tweet, article.article_photo.path
+            if article.article_photo
+            else None)
+
         messages.success(request,
                          f'Article "{article.article_title}" published!')
-        return redirect('newsletter_submit_success')
+        return redirect('publish_success')
 
     return render(
         request,

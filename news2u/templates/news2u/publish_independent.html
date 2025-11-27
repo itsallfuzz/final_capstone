@@ -13,12 +13,12 @@
         ALL articles are subject to the approval by an editor.</p>
 
     <h3>{{ article.article_title }}</h3>
-    <p>{{ article.article_content }}</p>
 
         {% if not article.is_approved %}
         <p><em>This article is pending editor approval.</em></p>
 
         {% else %}
+        <div style="text-align: center;">
             <h4>Publish your Article Now</h4>
             <form method="post"
             action="{% url 'publish_independent' article.id %}">
@@ -26,6 +26,7 @@
                 {{ form|crispy }}
                 <button type="submit" class="alt-button">Publish Independently</button>
             </form>
+        </div>
         {% endif %}
 
     <a href="{% url 'view_accepted_articles' %}">Go Back</a>

@@ -115,7 +115,6 @@ urlpatterns = [
           views.newsletter_submit_success,
           name="newsletter_submit_success"),
 
-
      # Delete Article
      path('article/<int:article_id>/delete/',
           views.delete_article, name='delete_article'),
@@ -131,8 +130,8 @@ urlpatterns = [
           name='my_published_articles'),
      path('view_published_article/<int:article_id>/',
           views.view_published_article, name='view_published_article'),
-     path('published_by_publisher/<int:article_id>/',
-          views.published_by_publisher, name='published_by_publisher'),
+     path('publish_by_publisher/<int:article_id>/',
+          views.publish_by_publisher, name='publish_by_publisher'),
      path('view_article_publication_requests/',
           views.view_article_publication_requests,
           name='view_article_publication_requests'),

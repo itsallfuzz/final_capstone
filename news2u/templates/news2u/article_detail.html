@@ -22,12 +22,12 @@
             {{ article.article_content|linebreaks }}
         </div>
         {% if article.status == 'draft' or article.status == 'revise'%}
-            <div class="article-actions">
+            <div class="article-actions" style="text-align: center">
                 <a href="{% url 'edit_article' article.id %}"
-                class="alt-button">Edit Article</a>
+                class="button">Edit Article</a>
                 <a href="{% url 'journalist_dashboard' %}"
-                class="alt-button">Save & finish later</a>
-
+                class="button">Save & finish later</a>
+                <br/><br/>
                 <h3>Submit for Editor Review?</h3>
                     <a href="{% url 'select_editor' article.id %}"
                     class="alt-button">Continue</a>

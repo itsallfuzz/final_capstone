@@ -40,6 +40,7 @@
                         <p>Written By: {{ article.journalist.journalist_name }}</p>
                         <p>Edited by: {{ article.editor.editor_name }}</p>
                         <p>Status: {{ article.get_status_display }}</p>
+                        <p>Published At: {{ article.published_at }}</p>
                     </div>
                 {% empty %}
                     <p>No articles have been accepted for publication yet.</p>

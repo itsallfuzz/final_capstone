@@ -22,15 +22,13 @@
             {{ article.article_content|linebreaks }}
         </div>
 
-    {% if article.editor_comments %}
-        <div class="editor-feedback">
-            <h4>Editor Feedback:</h4>
-            <p>{{ article.editor_comments|linebreaks }}</p>
-        </div>
-    {% endif %}
-
     {% if is_journalist %}
-    
+            {% if article.editor_comments %}
+                <div class="editor-feedback">
+                    <h4>Editor Feedback:</h4>
+                    <p>{{ article.editor_comments|linebreaks }}</p>
+                </div>
+            {% endif %}
         <div class="button-container">
             <a href="{% url 'publish_independent' article.id %}"
             class="alt-button">Publish Independently
@@ -46,15 +44,20 @@
             </a>
         </div>
     {% endif %}
-    <div>
-        <a href="{% url 'delete_article' article.id %}">
-            Delete Article</a>
-    </div>
+
     <br/>
     {% if is_journalist %}
         <a href="{% url 'view_accepted_articles' %}">Back to Submissions</a>
+            <div>
+        <a href="{% url 'delete_article' article.id %}">
+            Delete Article
+        </a>
+    </div>
     {% elif is_editor %}
         <a href="{% url 'view_requests' %}">Back to Submissions</a>
+        <a href="{% url 'delete_article' article.id %}">
+            Delete Article
+        </a>
     {% elif is_publisher %}
         <a href="{% url 'view_article_publication_requests' %}">
             Back to Requests</a>

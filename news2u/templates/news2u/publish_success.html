@@ -11,12 +11,9 @@
 {% block content %}
 <div style="text-align: center; padding: 50px;">
     <h2>Article Published Successfully!</h2>
-    <p>Your article <strong>"{{ article.article_title }}"</strong>
-        has been published independently.</p>
 
     <div class="button-container">
-        <a href="{% url 'journalist_dashboard' %}" class="button">Back to Dashboard</a>
-        <a href="{% url 'view_published_article' article.id %}"
+        <a href="{% url 'home' %}"
         class="button">View Article</a>
     </div>
 </div>

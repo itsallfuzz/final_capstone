@@ -39,6 +39,7 @@
                     {{ newsletter.published_at|date:"F j, Y, g:i a" }}
                     </p>
                     <p>Status: {{ newsletter.get_status_display }}</p>
+                    <p>Published At: {{ newsletter.published_at }}</p>
                 </li>
             {% endfor %}
         </ul>
