@@ -197,6 +197,31 @@ Created as part of a Django web development course project.
 Elizabeth Füzy
 
 
+<<<<<<< HEAD
+=======
+## Current users if reviewer wishes to login and test
+
+Journalists usernames (all passwords = journalist):
+Jane
+Samantha
+Nelly
+
+Editors usernames (all passwords = editor!!)
+Jack
+Gideon
+Dineo
+Vernon Gouws
+
+Publisher usernames (all passwords = publisher)
+Molly
+Craig
+Jason
+
+Reader usernames (all passwords = reader!!)
+Paula
+Brandon
+
+>>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
 ## Personal Feedback Notes to Reviewer
 
 Assignment Feedback: Django News Platform (News2U)
@@ -209,11 +234,18 @@ following features:
 - Article creation, submission, and approval workflow
 - Newsletter creation with article integration
 - Editor review and approval system
+<<<<<<< HEAD
 - Email notifications to subscribers upon article publication (I opted to
 not use Django signals although I wanted to but I was under time
 pressure and included the email functionality in the view logic.)
 - Subscription management for readers
 - Send Tweets when articles are published
+=======
+- Email notifications to subscribers upon article approval (I opted to
+not use Django signals although I wanted to but I was under time
+pressure and included the email funcitonality in the view logic.)
+- Subscription management for readers
+>>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
 - Django REST API endpoints for article retrieval
 - Role-based permissions and access control
 - Admin approval workflow for new users
@@ -226,7 +258,11 @@ Python code quality standards and ensure consistent formatting across
 the project. I couldn't change the settings.py flake flags and two view
 flags were not used in the code but it ws used in the backend.
 
+<<<<<<< HEAD
 Challenges and Timeline Feedback
+=======
+Challenges and Timeline Concerns
+>>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
 This assignment presented significant complexity that exceeded the
 expected time guidelines and it took me 18 days working more than 4 hours
 most days. The various roles with their permissions and subsequent views,
@@ -255,7 +291,11 @@ Enhanced CSS styling and responsive design
 More sophisticated UI/UX improvements
 Additional error handling and user feedback
 More comprehensive testing coverage
+<<<<<<< HEAD
 Performance optimisations
+=======
+Performance optimizations
+>>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
 
 Reflection
 This assignment provided valuable hands-on experience with complex
@@ -271,8 +311,17 @@ students adequate time for both functionality and polish, particularly
 for those who are new to Django.
 
 ## Note to the reviewer
+<<<<<<< HEAD
 I am aware that the UI can be improved but I did my absolute best within
 the time frame and focused on functionality and meeting requirements for
 the assignment.
+=======
+I would really like to focus on the next assignments, if something is
+incomplete I am happy to resubmit, but can I kindly ask that you have
+some leniency with marking and not request a resubmission for menial
+things that are not actually required. I am aware that the UI can be
+improved but I did my absolute best within the time frame and focused on
+functionality and meeting requirements for the assignment.
+>>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
 
 
