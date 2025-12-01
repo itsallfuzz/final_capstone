@@ -2,8 +2,8 @@ from requests_oauthlib import OAuth1Session
 import json
 
 class Tweet():
-    CONSUMER_KEY = "SrMXJ0lHfVLLXQKcjQxpAuoju"
-    CONSUMER_SECRET = "alu6MHNyTwOx9cfDg4SAXuJAMHCzcvU9Q97PAP9XmVawalVauP"
+    CONSUMER_KEY = "your_key_here"
+    CONSUMER_SECRET = "your_secret_here"
 
     _instance = None
 

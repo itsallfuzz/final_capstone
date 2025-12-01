@@ -100,28 +100,37 @@ EMAIL_HOST_USER = 'your-email@gmail.com'
 EMAIL_HOST_PASSWORD = 'your-app-password'
 ```
 
-5. Run migrations:
+5. Configure Twitter (X) settings and add your details:
+news2u/functions/tweet.py
+CONSUMER KEY & CONSUMER_SECRET
+
+6.Configure Django secret key
+```python
+   from django.core.management.utils import get_random_secret_key
+   print(get_random_secret_key())
+```
+Copy the generated key and paste it in `settings.py`:
+```python
+   SECRET_KEY = 'your-secret-key-here'
+```
+
+7. Run migrations:
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. Set up user groups and permissions:
-```bash
-python manage.py setup_groups
-```
-
-7. Create a superuser for the admin role and application control:
+8. Create a superuser for the admin role and application control:
 ```bash
 python manage.py createsuperuser
 ```
 
-8. Run the development server:
+9. Run the development server:
 ```bash
 python manage.py runserver
 ```
 
-9. Access the application at `http://127.0.0.1:8000/`
+10. Access the application at `http://127.0.0.1:8000/`
 
 ## Usage
 
@@ -199,129 +208,6 @@ Elizabeth Füzy
 
 <<<<<<< HEAD
 =======
-## Current users if reviewer wishes to login and test
-
-Journalists usernames (all passwords = journalist):
-Jane
-Samantha
-Nelly
-
-Editors usernames (all passwords = editor!!)
-Jack
-Gideon
-Dineo
-Vernon Gouws
-
-Publisher usernames (all passwords = publisher)
-Molly
-Craig
-Jason
-
-Reader usernames (all passwords = reader!!)
-Paula
-Brandon
-
->>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
-## Personal Feedback Notes to Reviewer
-
-Assignment Feedback: Django News Platform (News2U)
-Project Completion
-I have successfully completed all core requirements for this assignment,
-implementing a fully functional multi-role news platform with the
-following features:
-
-- Multi-user authentication system (Journalists, Editors, Publishers, Readers)
-- Article creation, submission, and approval workflow
-- Newsletter creation with article integration
-- Editor review and approval system
-<<<<<<< HEAD
-- Email notifications to subscribers upon article publication (I opted to
-not use Django signals although I wanted to but I was under time
-pressure and included the email functionality in the view logic.)
-- Subscription management for readers
-- Send Tweets when articles are published
-=======
-- Email notifications to subscribers upon article approval (I opted to
-not use Django signals although I wanted to but I was under time
-pressure and included the email funcitonality in the view logic.)
-- Subscription management for readers
->>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
-- Django REST API endpoints for article retrieval
-- Role-based permissions and access control
-- Admin approval workflow for new users
-- Unit Testing
-- Migrated to mariaDB
-
-Code Quality
-Throughout development, I used Flake8 for code linting to maintain
-Python code quality standards and ensure consistent formatting across
-the project. I couldn't change the settings.py flake flags and two view
-flags were not used in the code but it ws used in the backend.
-
-<<<<<<< HEAD
-Challenges and Timeline Feedback
-=======
-Challenges and Timeline Concerns
->>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
-This assignment presented significant complexity that exceeded the
-expected time guidelines and it took me 18 days working more than 4 hours
-most days. The various roles with their permissions and subsequent views,
-templates and urls most definitely requires adequate time and without
-continous assistance from Github co-pilot, Google, Claude A.I and
-StackOverflow, it would have probably taken me at least another month. I
-would love to troubleshoot to learn from it but had to often ask A.I
-to help troubleshoot for the sake of time and I think that robbed me of
-a great learning opportunity.
-
-Time Management Trade-offs:
-While all functional requirements have been met, I made the strategic
-decision to prioritise working functionality over extensive UI polish.
-Given that I am currently behind on multiple assignments in this course,
-I allocated my time to ensure:
-
-All features work correctly
-The code is clean and maintainable
-Core user workflows are complete and functional
-I adhere to PEP 8 Guidelines
-
-Areas for Future Enhancement that I would have
-liked to include (given additional time):
-
-Enhanced CSS styling and responsive design
-More sophisticated UI/UX improvements
-Additional error handling and user feedback
-More comprehensive testing coverage
-<<<<<<< HEAD
-Performance optimisations
-=======
-Performance optimizations
->>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
-
-Reflection
-This assignment provided valuable hands-on experience with complex
-Django concepts including signals alternatives, many-to-many
-relationships, role-based permissions, REST API development, and email
-integration. While the timeline was challenging given the scope, I
-believe I successfully delivered a working application that meets all
-specified requirements.
-
-I believe this feedback is important for future cohorts: the assignment
-scope should either be reduced or the timeline extended to allow
-students adequate time for both functionality and polish, particularly
-for those who are new to Django.
 
 ## Note to the reviewer
-<<<<<<< HEAD
-I am aware that the UI can be improved but I did my absolute best within
-the time frame and focused on functionality and meeting requirements for
-the assignment.
-=======
-I would really like to focus on the next assignments, if something is
-incomplete I am happy to resubmit, but can I kindly ask that you have
-some leniency with marking and not request a resubmission for menial
-things that are not actually required. I am aware that the UI can be
-improved but I did my absolute best within the time frame and focused on
-functionality and meeting requirements for the assignment.
->>>>>>> 3591a7a5861fd5c82349f889a516cfa5f42a7c12
-
 
