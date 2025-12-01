@@ -67,14 +67,20 @@ retrieving of articles and newsletters (See Planning Folder)
 
 ### Prerequisites (Install requirements.txt)
 - asgiref==3.10.0
+- certifi==2025.11.12
+- charset-normalizer==3.4.4
 - crispy-bootstrap4==2025.6
 - Django==5.2.8
 - django-crispy-forms==2.5
 - djangorestframework==3.16.1
+- idna==3.11
 - mysqlclient==2.2.7
+- oauthlib==3.3.1
 - pillow==12.0.0
+- requests==2.32.5
+- requests-oauthlib==2.0.0
 - sqlparse==0.5.3
-- pip
+- urllib3==2.5.0
 - Virtual environment (recommended)
 
 ### Setup
@@ -101,11 +107,14 @@ EMAIL_HOST_PASSWORD = 'your-app-password'
 ```
 
 5. Configure Twitter (X) settings and add your details:
-news2u/functions/tweet.py
+```
+In news2u/functions/tweet.py add:
 CONSUMER KEY & CONSUMER_SECRET
+```
 
 6.Configure Django secret key
-```python
+```bash
+python
    from django.core.management.utils import get_random_secret_key
    print(get_random_secret_key())
 ```
@@ -120,21 +129,92 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-8. Create a superuser for the admin role and application control:
+8. Set up user groups and permissions:
+```bash
+python manage.py setup_groups
+```
+
+9. Create a superuser for the admin role and application control after
+migration to MariaDB:
 ```bash
 python manage.py createsuperuser
 ```
 
-9. Run the development server:
+10. Run the development server:
 ```bash
 python manage.py runserver
 ```
 
-10. Access the application at `http://127.0.0.1:8000/`
+11. Access the application at `http://127.0.0.1:8000/`
+
+
+12. Run in Docker playground `https://labs.play-with-docker.com/`
+Login, create a new instance and run the following commands line by line:
+Pull the image from docker hub:
+Run the container:
+```bash
+docker pull lizfuzy/news_app
+docker run -p 8000:8000 lizfuzy/news_app
+```
+
+Go to Localhost:
+'http://localhost:8000'
+(Open port and enter 8000)
 
 ## Usage
 
-### First Steps
+## MariaDB migration
+The Docker version uses SQLite instead of MariaDB for portability
+and ease of deployment. The production version uses MariaDB and database
+should be migrated.
+
+1. **Install MariaDB** in a venv environment on your system as above
+2. **Create a database**
+   ```bash
+      mysql -u root -p
+      CREATE DATABASE news_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      CREATE USER 'news_user'@'localhost' IDENTIFIED BY 'your_password';
+      GRANT ALL PRIVILEGES ON news_app.* TO 'news_user'@'localhost';
+      exit
+   ```
+   Update database in settings.py
+   ```python
+      DATABASES = {
+         'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'news_app',
+            'USER': 'news_user',
+            'PASSWORD': 'your_password',
+            'HOST': 'localhost',
+            'PORT': '3306',
+         }
+      }
+   ```
+
+4. **Install MySQL client:**
+```bash
+   pip install mysqlclient
+```
+
+5. **Run migrations:**
+```bash
+   python manage.py migrate
+```
+
+6. **Create superuser:**
+```bash
+   python manage.py createsuperuser
+```
+
+**Note:** Data from SQLite will not automatically transfer.
+You'll start with a fresh database.
+
+## Twitter Note
+Twitter integration is disabled in the Docker version due to
+interactive authentication requirements. To enable, add your API
+keys and uncomment Tweet() in apps.py
+
+### First Steps once app is running
 
 1. **Register an account** - Choose your role (Journalist, Editor,
 Publisher, or Reader)
@@ -205,8 +285,6 @@ before you can log in
 Created as part of a Django web development course project.
 Elizabeth Füzy
 
-
-<<<<<<< HEAD
 =======
 
 ## Note to the reviewer
