@@ -10,6 +10,8 @@ COPY . .
 # Use SQLite settings for Docker
 ENV DJANGO_SETTINGS_MODULE=news_app.settings_docker
 
+RUN rm -f db.sqlite3 backup.json
+
 RUN python manage.py migrate
 RUN python manage.py setup_groups
 
