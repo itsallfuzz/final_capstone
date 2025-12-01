@@ -12,8 +12,20 @@ class CustomUser(models.Model):
     - created_at: DateTimeField set to the current date and time when
     the user is created
 
-    Methods: - __str__: Returns a string representation of the post,
-    showing the title. :param models.Model: Django's base model class.
+    Extends Django's User model with additional fields for role management,
+    approval status, and subscription tracking for readers.
+
+    Attributes:
+        user: One-to-one relationship with Django User model
+        email: User's email address
+        role: User role (Publisher, Editor, Journalist, or Reader)
+        created_at: Timestamp when user was created
+        is_approved: Whether user has been approved by admin
+        declined_for: Reasons for declining approval
+        subscribed_publishers: Many-to-many relationship with
+        Publisher for readers
+        subscribed_journalists: Many-to-many relationship with
+        Journalist for readers
     """
 
     ROLES = (
@@ -85,13 +97,29 @@ class CustomUser(models.Model):
             self.subscribed_journalists.clear()
 
     def __str__(self):
+        """String representation of the CustomUser
+
+        :param self: CustomUser instance
+        :type self: CustomUser
+
+        :return: String representation
+        :rtype: str
+        """
+
         return f"{self.user.username} - {self.role}"
 
 
 # Model for Publisher
 class Publisher(models.Model):
     """Model representing a publisher
-    - A publisher can have multiple journalists and editors
+    A publisher can have multiple journalists and editors
+
+    Attributes:
+        user: One-to-one relationship with Django User model
+        publisher_name: Name of the publisher
+        publisher_description: Description of the publisher
+        publisher_logo: Logo image for the publisher
+        journalists: Many-to-many relationship with Journalist model
     """
 
     user = models.OneToOneField(
@@ -116,14 +144,31 @@ class Publisher(models.Model):
         )
 
     def __str__(self):
+        """String representation of the Publisher
+
+        :param self: Publisher instance
+        :type self: Publisher
+
+        :return: String representation
+        :rtype: str
+        """
+
         return self.publisher_name
 
 
 # Model for Editor
 class Editor(models.Model):
     """Model representing an editor
-    - An editor can edit multiple articles and work for multiple
+    An editor can edit multiple articles and work for multiple
     publishers
+
+    Attributes:
+        user: One-to-one relationship with Django User model
+        editor_name: Name of the editor
+        editor_interests: Interests of the editor
+        editor_bio: Biography of the editor
+        editor_photo: Photo of the editor
+        publishers: Many-to-many relationship with Publisher model
     """
 
     user = models.OneToOneField(
@@ -161,14 +206,31 @@ class Editor(models.Model):
         ).distinct()
 
     def __str__(self):
+        """String representation of the Editor
+
+        :param self: Editor instance
+        :type self: Editor
+
+        :return: String representation
+        :rtype: str
+        """
+
         return f"{self.editor_name} ({self.editor_interests})"
 
 
 # Model for Journalist
 class Journalist(models.Model):
     """Model representing a journalist
-    - A journalist can write multiple articles and work for multiple
+    A journalist can write multiple articles and work for multiple
     publishers
+
+    Attributes:
+
+        user: One-to-one relationship with Django User model
+        journalist_name: Name of the journalist
+        journalist_bio: Biography of the journalist
+        journalist_photo: Photo of the journalist
+        editors: Many-to-many relationship with Editor model
     """
 
     user = models.OneToOneField(
@@ -204,21 +266,37 @@ class Journalist(models.Model):
         ).distinct()
 
     def __str__(self):
+        """String representation of the Journalist
+
+        :param self: Journalist instance
+        :type self: Journalist
+
+        :return: String representation
+        :rtype: str
+        """
+
         return self.journalist_name
 
 
 # Model for Articles
 class Article(models.Model):
     """Model representing a news article.
-    Fields:
-    - title: CharField for the article title
-    - content: TextField for the article content
-    - journalist: ForeignKey to CustomUser representing the author
-    - publisher: ForeignKey to CustomUser representing the publisher
-    - editor: ForeignKey to CustomUser representing the editor
-    - published_at: DateTimeField set to the current date and time when
-    the article is published
-    - is approved: BooleanField indicating if the article is approved
+
+    An article goes through various stages from draft to publication,
+    involving journalists, editors, and publishers.
+
+    Attributes:
+        - article_title: CharField for the article title
+        - article_content: TextField for the article content
+        - article_photo: ImageField for the article photo
+        - journalist: ForeignKey to CustomUser representing the author
+        - publisher: ForeignKey to CustomUser representing the publisher
+        - editor: ForeignKey to CustomUser representing the editor
+        - editor_comments: TextField for editor feedback
+        - submitted_at: DateTimeField for submission timestamp
+        - is_approved: BooleanField indicating if the article is approved
+        - status: CharField indicating the current status of the article
+        - published_at: DateTimeField for publication timestamp
     """
 
     STATUS_CHOICES = [
@@ -273,10 +351,28 @@ class Article(models.Model):
     published_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
+        """String representation of the Article
+
+        :param self: Article instance
+        :type self: Article
+
+        :return: String representation
+        :rtype: str
+        """
+
         return self.article_title
 
     # Create a preview of an article
     def article_preview(self):
+        """Create a preview of the article content"
+
+        :param self: Article instance
+        :type self: Article
+
+        :return: Preview string (first 100 characters of article)
+        :rtype: str
+        """
+        
         return f"{self.article_title}: {self.article_content[:100]}..."
 
 

@@ -9,15 +9,17 @@ from rest_framework import serializers
 class PublisherRegistrationForm(UserCreationForm):
     """ Form for registering a Publisher user.
 
-    Fields:
-    - publisher_name: CharField for the store name.
-    - description: TextField for the store description.
+    Attributes:
+        publisher_name: CharField for the store name
+        description: TextField for the store description
+        publisher_logo: ImageField for the store logo
 
     Meta class:
-    - Defines the model to use (Store) and the fields to include in the
+    Defines the model to use (Store) and the fields to include in the
     form.
 
-    :param forms.ModelForm: Django's ModelForm class.
+        model: Uses Django's built-in User model
+        fields: Includes username, email, password1, password2
     """
 
     publisher_name = forms.CharField(
@@ -38,16 +40,18 @@ class PublisherRegistrationForm(UserCreationForm):
 class EditorRegistrationForm(UserCreationForm):
     """ Form for registering an Editor user.
 
-    Fields:
-    - editor_name: CharField for the editor name.
-    - bio: TextField for the editor bio.
-    - profile_picture: ImageField for the editor profile picture.
+    Attributes:
+        editor_name: CharField for the editor name.
+        editor_interests: CharField for the editor interests.
+        editor_bio: TextField for the editor bio.
+        editor_photo: ImageField for the editor profile picture.
 
     Meta class:
-    - Defines the model to use (Editor) and the fields to include in the
+    Defines the model to use (Editor) and the fields to include in the
     form.
 
-    :param forms.ModelForm: Django's ModelForm class.
+        model: Uses Django's built-in User model
+        fields: Includes username, email, password1, password2
     """
 
     editor_name = forms.CharField(
@@ -71,16 +75,17 @@ class EditorRegistrationForm(UserCreationForm):
 class JournalistRegistrationForm(UserCreationForm):
     """ Form for registering a Journalist user.
 
-    Fields:
-    - journalist_name: CharField for the journalist name.
-    - bio: TextField for the journalist bio.
-    - profile_picture: ImageField for the journalist profile picture.
+    Attributes:
+        journalist_name: CharField for the journalist name.
+        journalist_bio: TextField for the journalist bio.
+        journalist_photo: ImageField for the journalist profile picture.
 
     Meta class:
-    - Defines the model to use (Journalist) and the fields to include
+    Defines the model to use (Journalist) and the fields to include
     in the form.
 
-    :param forms.ModelForm: Django's ModelForm class.
+        model: Uses Django's built-in User model
+        fields: Includes username, email, password1, password2
     """
 
     journalist_name = forms.CharField(
@@ -101,15 +106,16 @@ class JournalistRegistrationForm(UserCreationForm):
 class ReaderRegistrationForm(UserCreationForm):
     """ Form for registering a Reader user.
 
-    Fields:
-    - reader_name: CharField for the reader name.
-    - subscription: Journalist or Publisher subscription
+    Attributes:
+        reader_name: CharField for the reader name.
+        subscription: Journalist or Publisher subscription
 
     Meta class:
-    - Defines the model to use (Reader) and the fields to include in
+    Defines the model to use (Reader) and the fields to include in
     the form.
 
-    :param forms.ModelForm: Django's ModelForm class.
+        model: Uses Django's built-in User model
+        fields: Includes username, email, password1, password2
     """
 
     reader_name = forms.CharField(
@@ -130,16 +136,17 @@ class ReaderRegistrationForm(UserCreationForm):
 class AdminApprovalForm(forms.ModelForm):
     """ Form for admin approval of user registrations.
 
-    Fields:
-    - is_approved: BooleanField to approve or decline the user.
-    - declined_for: TextField for the reason of decline.
+    Attributes:
+        is_approved: BooleanField to approve or decline the user.
+        declined_for: TextField for the reason of decline.
 
     Meta class:
-    - Defines the model to use (AdminApproval) and the fields to
+    Defines the model to use (AdminApproval) and the fields to
     include in the
     form.
 
-    :param forms.ModelForm: Django's ModelForm class.
+        model: Uses AdminApproval model
+        fields: Includes is_approved, declined_for
     """
 
     is_approved = forms.BooleanField(
@@ -159,11 +166,12 @@ class AdminApprovalForm(forms.ModelForm):
 class LoginForm(forms.Form):
     """ Form for user login.
 
-    Fields:
-    - username: CharField for the username.
-    - password: CharField for the password.
+    Attributes:
+        username: CharField for the username.
+        password: CharField for the password.
 
-    :param forms.Form: Django's Form class.
+        model: Uses Django's built-in Login model
+        fields: Includes username, password
     """
 
     username = forms.CharField(max_length=150, label='Username')
@@ -174,11 +182,14 @@ class LoginForm(forms.Form):
 
 class ArticleForm(forms.ModelForm):
     """Form for article submission
-    - article title: Charfield
-    - article content: TextField
-    - article photo: ImageField
 
-    :param forms.Django's Form class
+    Attributes:
+        article_title: CharField for the article title.
+        article_content: TextField for the article content.
+        article_photo: ImageField for the article photo.
+
+        model: Uses Article model
+        fields: Includes article_title, article_content, article_photo
     """
 
     class Meta:
@@ -191,10 +202,14 @@ class ArticleForm(forms.ModelForm):
 
 class NewsletterForm(forms.ModelForm):
     """Form for newsletter submission
-    - newsletter title: Charfield
-    - newsletter content: TextField
 
-    :param forms.Django's Form class
+    Attributes:
+        articles: MultipleChoiceField for selecting articles to include
+        newsletter_title: CharField for the newsletter title.
+        newsletter_content: TextField for the newsletter content.
+
+        model: Uses Newsletter model
+        fields: Includes newsletter_title, newsletter_content, articles
     """
 
     class Meta:
@@ -242,6 +257,11 @@ class NewsletterForm(forms.ModelForm):
 class SelectEditorForm(forms.Form):
     """ Journalist can choose to publish an article independently and
     select their editor of choice.
+
+    Attributes:
+        editor: ModelChoiceField for selecting an editor.
+        model: Uses Editor model
+        fields: Includes editor
     """
 
     editor = forms.ModelChoiceField(
@@ -262,6 +282,11 @@ class SelectEditorForm(forms.Form):
 class SubmitToPublisherForm(forms.Form):
     """ Journalist can choose to submit to publication house
     in which case an editor will be assigned.
+
+    Attributes:
+        publisher: ModelChoiceField for selecting a publisher.
+        model: Uses Publisher model
+        fields: Includes publisher
     """
 
     publisher = forms.ModelChoiceField(
@@ -275,11 +300,12 @@ class SubmitToPublisherForm(forms.Form):
 class SubscriptionForm(forms.Form):
     """ Form for readers to subscribe to journalists and publishers.
 
-    Fields:
-    - journalists: MultipleChoiceField for selecting journalists.
-    - publishers: MultipleChoiceField for selecting publishers.
+    Attributes:
+        journalists: MultipleChoiceField for selecting journalists.
+        publishers: MultipleChoiceField for selecting publishers.
 
-    :param forms.Form: Django's Form class.
+        model: Uses Reader model
+        fields: Includes journalists, publishers
     """
 
     journalists = forms.ModelMultipleChoiceField(

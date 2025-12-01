@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>news2u.forms &mdash; News2U 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d7bb8d4d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            News2U
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">news2u</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">News2U</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">news2u.forms</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for news2u.forms</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span><span class="p">,</span> <span class="n">Editor</span><span class="p">,</span> <span class="n">Journalist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdminApproval</span><span class="p">,</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserCreationForm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span>
+
+
+<div class="viewcode-block" id="PublisherRegistrationForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.PublisherRegistrationForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherRegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for registering a Publisher user.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        publisher_name: CharField for the store name</span>
+<span class="sd">        description: TextField for the store description</span>
+<span class="sd">        publisher_logo: ImageField for the store logo</span>
+
+<span class="sd">    Meta class:</span>
+<span class="sd">    Defines the model to use (Store) and the fields to include in the</span>
+<span class="sd">    form.</span>
+
+<span class="sd">        model: Uses Django&#39;s built-in User model</span>
+<span class="sd">        fields: Includes username, email, password1, password2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">publisher_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Publication House&#39;</span>
+        <span class="p">)</span>
+    <span class="n">publisher_description</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Description&#39;</span>
+        <span class="p">)</span>
+    <span class="n">publisher_logo</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logo&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="PublisherRegistrationForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.PublisherRegistrationForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="EditorRegistrationForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.EditorRegistrationForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EditorRegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for registering an Editor user.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        editor_name: CharField for the editor name.</span>
+<span class="sd">        editor_interests: CharField for the editor interests.</span>
+<span class="sd">        editor_bio: TextField for the editor bio.</span>
+<span class="sd">        editor_photo: ImageField for the editor profile picture.</span>
+
+<span class="sd">    Meta class:</span>
+<span class="sd">    Defines the model to use (Editor) and the fields to include in the</span>
+<span class="sd">    form.</span>
+
+<span class="sd">        model: Uses Django&#39;s built-in User model</span>
+<span class="sd">        fields: Includes username, email, password1, password2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">editor_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span>
+        <span class="p">)</span>
+    <span class="n">editor_interests</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interest Areas&#39;</span>
+        <span class="p">)</span>
+    <span class="n">editor_bio</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bio&#39;</span>
+        <span class="p">)</span>
+    <span class="n">editor_photo</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Profile Picture&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="EditorRegistrationForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.EditorRegistrationForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="JournalistRegistrationForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.JournalistRegistrationForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JournalistRegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for registering a Journalist user.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        journalist_name: CharField for the journalist name.</span>
+<span class="sd">        journalist_bio: TextField for the journalist bio.</span>
+<span class="sd">        journalist_photo: ImageField for the journalist profile picture.</span>
+
+<span class="sd">    Meta class:</span>
+<span class="sd">    Defines the model to use (Journalist) and the fields to include</span>
+<span class="sd">    in the form.</span>
+
+<span class="sd">        model: Uses Django&#39;s built-in User model</span>
+<span class="sd">        fields: Includes username, email, password1, password2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">journalist_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span>
+        <span class="p">)</span>
+    <span class="n">journalist_bio</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bio&#39;</span>
+        <span class="p">)</span>
+    <span class="n">journalist_photo</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Profile Picture&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="JournalistRegistrationForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.JournalistRegistrationForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ReaderRegistrationForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.ReaderRegistrationForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReaderRegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for registering a Reader user.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        reader_name: CharField for the reader name.</span>
+<span class="sd">        subscription: Journalist or Publisher subscription</span>
+
+<span class="sd">    Meta class:</span>
+<span class="sd">    Defines the model to use (Reader) and the fields to include in</span>
+<span class="sd">    the form.</span>
+
+<span class="sd">        model: Uses Django&#39;s built-in User model</span>
+<span class="sd">        fields: Includes username, email, password1, password2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reader_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span>
+        <span class="p">)</span>
+    <span class="n">reader_interests</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interests&#39;</span>
+        <span class="p">)</span>
+    <span class="n">reader_photo</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Profile Picture&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="ReaderRegistrationForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.ReaderRegistrationForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="AdminApprovalForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.AdminApprovalForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdminApprovalForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for admin approval of user registrations.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        is_approved: BooleanField to approve or decline the user.</span>
+<span class="sd">        declined_for: TextField for the reason of decline.</span>
+
+<span class="sd">    Meta class:</span>
+<span class="sd">    Defines the model to use (AdminApproval) and the fields to</span>
+<span class="sd">    include in the</span>
+<span class="sd">    form.</span>
+
+<span class="sd">        model: Uses AdminApproval model</span>
+<span class="sd">        fields: Includes is_approved, declined_for</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">is_approved</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approve User&#39;</span>
+        <span class="p">)</span>
+    <span class="n">declined_for</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reason for Decline&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="AdminApprovalForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.AdminApprovalForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">AdminApproval</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_approved&#39;</span><span class="p">,</span> <span class="s1">&#39;declined_for&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LoginForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.LoginForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LoginForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for user login.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        username: CharField for the username.</span>
+<span class="sd">        password: CharField for the password.</span>
+
+<span class="sd">        model: Uses Django&#39;s built-in Login model</span>
+<span class="sd">        fields: Includes username, password</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Username&#39;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Password&#39;</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ArticleForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.ArticleForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for article submission</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        article_title: CharField for the article title.</span>
+<span class="sd">        article_content: TextField for the article content.</span>
+<span class="sd">        article_photo: ImageField for the article photo.</span>
+
+<span class="sd">        model: Uses Article model</span>
+<span class="sd">        fields: Includes article_title, article_content, article_photo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ArticleForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.ArticleForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;article_title&#39;</span><span class="p">,</span> <span class="s1">&#39;article_content&#39;</span><span class="p">,</span> <span class="s1">&#39;article_photo&#39;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;article_content&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}),</span>
+        <span class="p">}</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NewsletterForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.NewsletterForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for newsletter submission</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        articles: MultipleChoiceField for selecting articles to include</span>
+<span class="sd">        newsletter_title: CharField for the newsletter title.</span>
+<span class="sd">        newsletter_content: TextField for the newsletter content.</span>
+
+<span class="sd">        model: Uses Newsletter model</span>
+<span class="sd">        fields: Includes newsletter_title, newsletter_content, articles</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NewsletterForm.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.NewsletterForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;newsletter_title&#39;</span><span class="p">,</span> <span class="s1">&#39;newsletter_content&#39;</span><span class="p">,</span> <span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;newsletter_content&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}),</span>
+                <span class="s1">&#39;articles&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">CheckboxSelectMultiple</span><span class="p">(),</span>
+        <span class="p">}</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;journalist&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;publisher&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">editor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;editor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Filter articles based on who&#39;s creating the newsletter</span>
+        <span class="k">if</span> <span class="n">journalist</span><span class="p">:</span>
+            <span class="c1"># Journalist sees only their own published articles</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">journalist</span><span class="o">=</span><span class="n">journalist</span><span class="p">,</span>
+                <span class="n">status__in</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;published_independent&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;published_publisher&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">publisher</span><span class="p">:</span>
+            <span class="c1"># Publisher sees all articles published through them</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">publisher</span><span class="o">=</span><span class="n">publisher</span><span class="p">,</span>
+                <span class="n">status</span><span class="o">=</span><span class="s1">&#39;published_publisher&#39;</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">editor</span><span class="p">:</span>
+            <span class="c1"># Editor sees articles assigned to them</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">editor</span><span class="o">=</span><span class="n">editor</span><span class="p">,</span>
+                <span class="n">status__in</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;published_independent&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;published_publisher&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">none</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Select articles to include:&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="SelectEditorForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.SelectEditorForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SelectEditorForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Journalist can choose to publish an article independently and</span>
+<span class="sd">    select their editor of choice.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        editor: ModelChoiceField for selecting an editor.</span>
+<span class="sd">        model: Uses Editor model</span>
+<span class="sd">        fields: Includes editor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">editor</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelChoiceField</span><span class="p">(</span>
+        <span class="n">queryset</span><span class="o">=</span><span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select Editor&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;journalist&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">journalist</span><span class="p">:</span>
+            <span class="c1"># Show editors this journalist works with</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;editor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="SubmitToPublisherForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.SubmitToPublisherForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SubmitToPublisherForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Journalist can choose to submit to publication house</span>
+<span class="sd">    in which case an editor will be assigned.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        publisher: ModelChoiceField for selecting a publisher.</span>
+<span class="sd">        model: Uses Publisher model</span>
+<span class="sd">        fields: Includes publisher</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">publisher</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelChoiceField</span><span class="p">(</span>
+        <span class="n">queryset</span><span class="o">=</span><span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>  <span class="c1"># Shows all publishers</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select Publication House&quot;</span><span class="p">,</span>
+        <span class="n">empty_label</span><span class="o">=</span><span class="s2">&quot;-- Choose a Publisher --&quot;</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SubscriptionForm">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.SubscriptionForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SubscriptionForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Form for readers to subscribe to journalists and publishers.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        journalists: MultipleChoiceField for selecting journalists.</span>
+<span class="sd">        publishers: MultipleChoiceField for selecting publishers.</span>
+
+<span class="sd">        model: Uses Reader model</span>
+<span class="sd">        fields: Includes journalists, publishers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">journalists</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelMultipleChoiceField</span><span class="p">(</span>
+        <span class="n">queryset</span><span class="o">=</span><span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">CheckboxSelectMultiple</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Subscribe to Journalists&#39;</span>
+        <span class="p">)</span>
+    <span class="n">publishers</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelMultipleChoiceField</span><span class="p">(</span>
+        <span class="n">queryset</span><span class="o">=</span><span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">CheckboxSelectMultiple</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Subscribe to Publication Houses&#39;</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoginFormSerializer">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.LoginFormSerializer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LoginFormSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Serializer for LoginForm to convert form data to JSON format.</span>
+
+<span class="sd">    Fields:</span>
+<span class="sd">    - username: CharField for the username.</span>
+<span class="sd">    - password: CharField for the password.</span>
+
+<span class="sd">    :param serializers.Serializer: Django REST Framework&#39;s Serializer class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LoginFormSerializer.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.LoginFormSerializer.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SubscriptionFormSerializer">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.SubscriptionFormSerializer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SubscriptionFormSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Serializer for SubscriptionForm to convert form data to JSON format.</span>
+
+<span class="sd">    Fields:</span>
+<span class="sd">    - journalists: MultipleChoiceField for selecting journalists.</span>
+<span class="sd">    - publishers: MultipleChoiceField for selecting publishers.</span>
+
+<span class="sd">    :param serializers.Serializer: Django REST Framework&#39;s Serializer class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SubscriptionFormSerializer.Meta">
+<a class="viewcode-back" href="../../news2u.html#news2u.forms.SubscriptionFormSerializer.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;journalists&#39;</span><span class="p">,</span> <span class="s1">&#39;publishers&#39;</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Elizabeth Fuzy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
