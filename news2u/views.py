@@ -84,6 +84,19 @@ def register(request):
 
 
 def register_publisher(request):
+    """Handle the registration of a new publisher.
+
+    Creates a new user account with publisher role and sets it to
+    inactive until admin approval. Also creates associated CustomUser,
+    AdminApproval, and Publisher profile records.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Redirect to pending approval
+    rtype: HttpResponse
+    """
+
     if request.method == 'POST':
         form = PublisherRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -146,6 +159,18 @@ def register_publisher(request):
 
 # User Registration for the Editor role
 def register_editor(request):
+    """Handle the registration of a new editor.
+
+    Creates a new user account with editor role and sets it to inactive
+    until admin approval. Also creates associated CustomUser,
+    AdminApproval, and Editor profile records.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Redirect to pending approval
+    rtype: HttpResponse
+    """
     if request.method == 'POST':
         form = EditorRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -204,6 +229,18 @@ def register_editor(request):
 
 # User Registration for the Journalist role
 def register_journalist(request):
+    """Handle the registration of a new journalist.
+
+    Creates a new user account with journalist role and sets it to
+    inactive until admin approval. Also creates associated CustomUser,
+    AdminApproval, and Journalist profile records.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Redirect to pending approval
+    rtype: HttpResponse
+    """
     if request.method == 'POST':
         form = JournalistRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -261,8 +298,18 @@ def register_journalist(request):
 
 # User registration for the Reader role
 def register_reader(request):
-    """ Handle Reader user registration. Readers are immediately
-    active"""
+    """Handle the registration of a new reader (subscriber).
+
+    Creates a new user account with reader role and sets it to active
+    immediately. Also creates associated CustomUser and Reader profile
+    records.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Login Page or render registration form
+    rtype: HttpResponse
+    """
 
     if request.method == 'POST':
         form = ReaderRegistrationForm(request.POST, request.FILES)
@@ -344,6 +391,17 @@ def view_pending_registration(request):
 
 # User Login
 def user_login(request):
+    """Handle user login and redirect based on role.
+
+    Manages login for all user roles and redirects to respective
+    dashboards.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Login page or redirect to dashboard
+    rtype: HttpResponse
+    """
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -374,6 +432,16 @@ def user_login(request):
 
 # User Logout
 def user_logout(request):
+    """Handle user logout.
+
+    Logs out the user and redirects to login page.
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Redirect to login page
+    rtype: HttpResponse
+    """
+
     if request.user.is_authenticated:  # Better check than is not None
         # Clear pending messages
         storage = messages.get_messages(request)
@@ -387,6 +455,15 @@ def user_logout(request):
 
 # Reset Password
 def generate_reset_url(user):
+    """ Generate a unique password reset URL for the user.
+
+    :param user: User object
+    :type user: User
+
+    :return: Password reset URL
+    rtype: str
+    """
+
     domain = "http://127.0.0.1:8000/"
     app_name = "news2u"
     url = f"{domain}{app_name}/reset_password/"
@@ -403,6 +480,18 @@ def generate_reset_url(user):
 
 # Build an email to send email to user with reset link
 def build_email(user, reset_url):
+    """ Build the password reset email.
+
+    Build the email template to sendt to the user with the password
+    reset link.
+
+    :param user: User object
+    :type user: User
+
+    :param reset_url: Password reset URL
+    :type reset_url: str
+    """
+
     subject = "Password Reset"
     user_email = user.email
     domain_email = "example@domain.com"
@@ -416,11 +505,29 @@ def build_email(user, reset_url):
 
 # Take user to the forgot password page
 def forgot_password(request):
+    """ Render the forgot password page.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Render forgot password page
+    rtype: HttpResponse
+    """
+
     return render(request, 'news2u/forgot_password.html')
 
 
 # Send password reset link to user's email
 def send_password_reset(request):
+    """ Send password reset link to user's email.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+
+    :return: Redirect to login page with success message
+    rtype: HttpResponse
+    """
+
     user_email = request.POST.get('email')
     user = User.objects.get(email=user_email)
     url = generate_reset_url(user)
@@ -435,6 +542,17 @@ def send_password_reset(request):
 
 # Password Reset Confirmation
 def reset_password(request, token):
+    """ Handle password reset using the provided token.
+
+    :param request: HttpRequest object
+    :type request: HttpRequest
+    :param token: Password reset token
+    :type token: str
+
+    :return: Render reset password page or redirect to login
+    :rtype: HttpResponse
+    """
+
     hashed_token = sha1(token.encode()).hexdigest()
     reset_token = get_object_or_404(ResetToken, token=hashed_token)
 
@@ -476,7 +594,14 @@ def reset_password(request, token):
 # ============================================================
 
 def send_article_email(article):
-    """ Send email to subscribers when article is approved """
+    """ Send email to subscribers when article is approved
+
+    :param article: Article object to be sent
+    :type article: Article
+
+    :return: Number of emails sent (in console) (or None)
+    rtype: None
+    """
 
     print("=== SEND ARTICLE EMAIL PRINT TO CONSOLE ===")
     print(f"Article: {article.article_title}")
@@ -555,7 +680,14 @@ Read the full article on News2U.
 def send_newsletter_email(newsletter):
     """ Send newsletter to subscribers via email and after approval
       by editor.
-      """
+
+    :param newsletter: Newsletter object to be sent
+    :type newsletter: Newsletter
+
+    :return: Number of emails sent (in console) (or None)
+    :rtype: None
+
+    """
 
     # For newsletter published independently by journalists
 
