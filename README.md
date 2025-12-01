@@ -163,17 +163,15 @@ Go to Localhost:
 
 
 ## Important Setup Notes
+
 ## Twitter
 Twitter integration is disabled in the Dockerized version due to
 interactive authentication requirements. To enable, add your API
 keys and uncomment Tweet() in apps.py
 
-## MariaDB
 ## Docker Note
 The Dockerised version uses SQLite instead of MariaDB for portability
 and ease of deployment. The production version uses MariaDB.
-
-## Usage
 
 ## MariaDB migration
 The Docker version uses SQLite instead of MariaDB for portability
@@ -221,10 +219,7 @@ should be migrated.
 **Note:** Data from SQLite will not automatically transfer.
 You'll start with a fresh database.
 
-## Twitter Note
-Twitter integration is disabled in the Docker version due to
-interactive authentication requirements. To enable, add your API
-keys and uncomment Tweet() in apps.py
+## Usage
 
 ### First Steps once app is running
 
@@ -298,6 +293,3 @@ Created as part of a Django web development course project.
 Elizabeth Füzy
 
 =======
-
-## Note to the reviewer
-
