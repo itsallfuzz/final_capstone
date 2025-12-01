@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>news2u.admin &mdash; News2U 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d7bb8d4d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            News2U
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">news2u</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">News2U</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">news2u.admin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for news2u.admin</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdminApproval</span><span class="p">,</span> <span class="n">CustomUser</span><span class="p">,</span> <span class="n">Editor</span><span class="p">,</span> <span class="n">Journalist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span><span class="p">,</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span><span class="p">,</span> <span class="n">Reader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.core.mail</span><span class="w"> </span><span class="kn">import</span> <span class="n">send_mail</span>
+
+<span class="c1"># Register your models here.</span>
+
+<span class="c1"># Publisher model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Publisher</span><span class="p">)</span>
+
+<span class="c1"># Editor model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Editor</span><span class="p">)</span>
+
+<span class="c1"># Journalist model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Journalist</span><span class="p">)</span>
+
+<span class="c1"># Article model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Article</span><span class="p">)</span>
+
+<span class="c1"># Newsletter model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Newsletter</span><span class="p">)</span>
+
+<span class="c1"># Reader model</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Reader</span><span class="p">)</span>
+
+
+<span class="c1"># CustomUser admin</span>
+<div class="viewcode-block" id="CustomUserAdmin">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.CustomUserAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">CustomUser</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomUserAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;get_username&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;is_approved&#39;</span><span class="p">)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user__username&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;is_approved&#39;</span><span class="p">)</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;approve_user&#39;</span><span class="p">,</span> <span class="s1">&#39;decline_user&#39;</span><span class="p">]</span>
+
+    <span class="n">readonly_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;get_bio&#39;</span><span class="p">)</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;role&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;created_at&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;get_bio&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_approved&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;declined_for&#39;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="CustomUserAdmin.get_username">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.CustomUserAdmin.get_username">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_username</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display the username from the related User object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>  <span class="c1"># obj is CustomUser, obj.user is User</span></div>
+
+    <span class="n">get_username</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">&#39;Username&#39;</span>
+    <span class="n">get_username</span><span class="o">.</span><span class="n">admin_order_field</span> <span class="o">=</span> <span class="s1">&#39;user__username&#39;</span>
+
+<div class="viewcode-block" id="CustomUserAdmin.get_bio">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.CustomUserAdmin.get_bio">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_bio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Show bio/description from profile&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;journalist&#39;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;journalist&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">new_journalist</span><span class="o">.</span><span class="n">journalist_bio</span>
+        <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;editor&#39;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">new_editor</span><span class="o">.</span><span class="n">editor_bio</span>
+        <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;publisher&#39;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">publisher</span><span class="o">.</span><span class="n">publisher_description</span>
+        <span class="k">return</span> <span class="s2">&quot;No bio available&quot;</span></div>
+
+    <span class="n">get_bio</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">&#39;Bio/Description&#39;</span>
+
+<div class="viewcode-block" id="CustomUserAdmin.approve_user">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.CustomUserAdmin.approve_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">approve_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">is_approved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">custom_user</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="n">custom_user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">custom_user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2"> user(s) approved.&quot;</span><span class="p">)</span></div>
+
+    <span class="n">approve_user</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Approve selected users&quot;</span>
+
+<div class="viewcode-block" id="CustomUserAdmin.decline_user">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.CustomUserAdmin.decline_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decline_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decline user registrations and notify via email.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">custom_user</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="n">send_mail</span><span class="p">(</span>
+                <span class="n">subject</span><span class="o">=</span><span class="s1">&#39;Registration Declined&#39;</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Sorry, your </span><span class="si">{</span><span class="n">custom_user</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s1"> registration was &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;declined.</span><span class="se">\n\n</span><span class="s1">Reason: </span><span class="si">{</span><span class="n">custom_user</span><span class="o">.</span><span class="n">declined_for</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="p">),</span>
+                <span class="n">from_email</span><span class="o">=</span><span class="s1">&#39;admin@news2u.com&#39;</span><span class="p">,</span>
+                <span class="n">recipient_list</span><span class="o">=</span><span class="p">[</span><span class="n">custom_user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
+                <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">custom_user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2"> user(s) declined and notified.&quot;</span>
+            <span class="p">)</span></div>
+
+    <span class="n">decline_user</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Decline selected users&quot;</span></div>
+
+
+
+<span class="c1"># AdminApproval admin - SEPARATE CLASS!</span>
+<div class="viewcode-block" id="AdminApprovalAdmin">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.AdminApprovalAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">AdminApproval</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdminApprovalAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;get_username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;role&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_approved&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requested_at&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;declined_for&#39;</span>
+        <span class="p">)</span>
+    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;declined_for&#39;</span><span class="p">,)</span>
+    <span class="c1"># Note: double user__ because AdminApproval.user is CustomUser</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user__user__username&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;is_approved&#39;</span><span class="p">,</span> <span class="s1">&#39;requested_at&#39;</span><span class="p">)</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;approve_user&#39;</span><span class="p">,</span> <span class="s1">&#39;decline_user&#39;</span><span class="p">]</span>
+
+    <span class="n">readonly_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;requested_at&#39;</span><span class="p">)</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;is_approved&#39;</span><span class="p">,</span> <span class="s1">&#39;declined_for&#39;</span><span class="p">,</span> <span class="s1">&#39;requested_at&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AdminApprovalAdmin.get_username">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.AdminApprovalAdmin.get_username">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_username</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display the username from the related User object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span></div>
+
+    <span class="n">get_username</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">&#39;Username&#39;</span>
+    <span class="n">get_username</span><span class="o">.</span><span class="n">admin_order_field</span> <span class="o">=</span> <span class="s1">&#39;user__user__username&#39;</span>
+
+<div class="viewcode-block" id="AdminApprovalAdmin.approve_user">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.AdminApprovalAdmin.approve_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">approve_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">is_approved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">approval</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="c1"># Activate the user</span>
+            <span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="c1"># Update CustomUser</span>
+            <span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_approved</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2"> user(s) approved.&quot;</span><span class="p">)</span></div>
+
+    <span class="n">approve_user</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Approve selected users&quot;</span>
+
+<div class="viewcode-block" id="AdminApprovalAdmin.decline_user">
+<a class="viewcode-back" href="../../news2u.html#news2u.admin.AdminApprovalAdmin.decline_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decline_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decline user registrations and notify via email.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">approval</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="c1"># Make sure a reason was provided</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">approval</span><span class="o">.</span><span class="n">declined_for</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span>
+                    <span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Please add a decline reason in the &quot;</span>
+                    <span class="s2">&quot;&#39;Declined for&#39; field first.&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">approval</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="n">send_mail</span><span class="p">(</span>
+                <span class="n">subject</span><span class="o">=</span><span class="s1">&#39;Registration Declined&#39;</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Sorry, your </span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s1"> registration was &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;declined.</span><span class="se">\n\n</span><span class="s1">Reason: </span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">declined_for</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="p">),</span>
+                <span class="n">from_email</span><span class="o">=</span><span class="s1">&#39;admin@news2u.com&#39;</span><span class="p">,</span>
+                <span class="n">recipient_list</span><span class="o">=</span><span class="p">[</span><span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
+                <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">approval</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2"> user(s) declined and notified.&quot;</span><span class="p">)</span></div>
+
+    <span class="n">decline_user</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Decline selected users&quot;</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Elizabeth Fuzy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

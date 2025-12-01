@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>news2u.tests &mdash; News2U 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d7bb8d4d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            News2U
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">news2u</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">News2U</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">news2u.tests</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for news2u.tests</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.test</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomUser</span><span class="p">,</span> <span class="n">Publisher</span><span class="p">,</span> <span class="n">Editor</span><span class="p">,</span> <span class="n">Journalist</span><span class="p">,</span> <span class="n">Reader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span><span class="p">,</span> <span class="n">AdminApproval</span><span class="p">,</span> <span class="n">ResetToken</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticleSerializer</span><span class="p">,</span> <span class="n">ReaderSerializer</span><span class="p">,</span> <span class="n">CustomUserSerializer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">JournalistSerializer</span><span class="p">,</span> <span class="n">PublisherSerializer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+
+
+<span class="c1"># CustomUser Model Tests</span>
+<div class="viewcode-block" id="CustomUserModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomUserModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomUserModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User object for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testuser&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomUserModelTest.test_custom_user_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_custom_user_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a CustomUser can be created</span>
+        <span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">custom_user</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomUserModelTest.test_custom_user_has_role">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_has_role">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_custom_user_has_role</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a CustomUser has the expected role</span>
+        <span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">custom_user</span><span class="o">.</span><span class="n">role</span><span class="p">,</span> <span class="s1">&#39;reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomUserModelTest.test_custom_user_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_custom_user_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns username</span>
+        <span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">custom_user</span><span class="p">),</span> <span class="s1">&#39;testuser&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Publisher Model Tests</span>
+<div class="viewcode-block" id="PublisherModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="PublisherModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a Publisher object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testpublisher&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;publisher&#39;</span><span class="p">),</span>
+            <span class="n">publisher_name</span><span class="o">=</span><span class="s1">&#39;Test Publisher&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;This is a test publisher.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PublisherModelTest.test_publisher_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest.test_publisher_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_publisher_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Publisher can be created</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PublisherModelTest.test_publisher_has_name">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest.test_publisher_has_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_publisher_has_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Publisher has the expected name</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">publisher</span><span class="o">.</span><span class="n">publisher_name</span><span class="p">,</span> <span class="s1">&#39;Test Publisher&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PublisherModelTest.test_publisher_has_description">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest.test_publisher_has_description">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_publisher_has_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Publisher has a description</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">publisher</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="s1">&#39;This is a test publisher.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PublisherModelTest.test_publisher_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherModelTest.test_publisher_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_publisher_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns name</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">publisher</span><span class="p">),</span> <span class="s1">&#39;Test Publisher&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Editor Model Tests</span>
+<div class="viewcode-block" id="EditorModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EditorModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create an Editor object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testeditor&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">editor</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;editor&#39;</span><span class="p">),</span>
+            <span class="n">editor_name</span><span class="o">=</span><span class="s1">&#39;Test Editor&#39;</span><span class="p">,</span>
+            <span class="n">bio</span><span class="o">=</span><span class="s1">&#39;This is a test editor bio.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditorModelTest.test_editor_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest.test_editor_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Editor can be created</span>
+        <span class="n">editor</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">editor</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditorModelTest.test_editor_has_name">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest.test_editor_has_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_has_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Editor has the expected name</span>
+        <span class="n">editor</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">editor</span><span class="o">.</span><span class="n">editor_name</span><span class="p">,</span> <span class="s1">&#39;Test Editor&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditorModelTest.test_editor_has_bio">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest.test_editor_has_bio">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_has_bio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Editor has a bio</span>
+        <span class="n">editor</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">editor</span><span class="o">.</span><span class="n">bio</span><span class="p">,</span> <span class="s1">&#39;This is a test editor bio.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditorModelTest.test_editor_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.EditorModelTest.test_editor_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns name</span>
+        <span class="n">editor</span> <span class="o">=</span> <span class="n">Editor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">editor</span><span class="p">),</span> <span class="s1">&#39;Test Editor&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Journalist Model Tests</span>
+<div class="viewcode-block" id="JournalistModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JournalistModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="JournalistModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a Journalist object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testjournalist&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;journalist&#39;</span><span class="p">),</span>
+            <span class="n">journalist_name</span><span class="o">=</span><span class="s1">&#39;Test Journalist&#39;</span><span class="p">,</span>
+            <span class="n">bio</span><span class="o">=</span><span class="s1">&#39;This is a test journalist bio.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JournalistModelTest.test_journalist_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest.test_journalist_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Journalist can be created</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">journalist</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JournalistModelTest.test_journalist_has_name">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest.test_journalist_has_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_has_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Journalist has the expected name</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">journalist</span><span class="o">.</span><span class="n">journalist_name</span><span class="p">,</span> <span class="s1">&#39;Test Journalist&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JournalistModelTest.test_journalist_has_bio">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest.test_journalist_has_bio">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_has_bio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Journalist has a bio</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">journalist</span><span class="o">.</span><span class="n">bio</span><span class="p">,</span> <span class="s1">&#39;This is a test journalist bio.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JournalistModelTest.test_journalist_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistModelTest.test_journalist_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns name</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">journalist</span><span class="p">),</span> <span class="s1">&#39;Test Journalist&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Reader Model Tests</span>
+<div class="viewcode-block" id="ReaderModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReaderModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ReaderModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a Reader object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testreader&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">),</span>
+            <span class="n">reader_name</span><span class="o">=</span><span class="s1">&#39;Test Reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReaderModelTest.test_reader_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderModelTest.test_reader_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reader_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Reader can be created</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReaderModelTest.test_reader_has_name">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderModelTest.test_reader_has_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reader_has_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Reader has the expected name</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">reader_name</span><span class="p">,</span> <span class="s1">&#39;Test Reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReaderModelTest.test_reader_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderModelTest.test_reader_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reader_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns name</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reader</span><span class="p">),</span> <span class="s1">&#39;Test Reader&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Article Model Tests</span>
+<div class="viewcode-block" id="ArticleModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ArticleModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create an Article object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testjournalist2&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;journalist&#39;</span><span class="p">),</span>
+            <span class="n">journalist_name</span><span class="o">=</span><span class="s1">&#39;Test Journalist 2&#39;</span><span class="p">,</span>
+            <span class="n">bio</span><span class="o">=</span><span class="s1">&#39;This is another test journalist bio.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Test Article&#39;</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s1">&#39;This is the content of the test article.&#39;</span><span class="p">,</span>
+            <span class="n">journalist</span><span class="o">=</span><span class="n">journalist</span><span class="p">,</span>
+            <span class="n">status</span><span class="o">=</span><span class="s1">&#39;draft&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleModelTest.test_article_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest.test_article_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_article_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Article can be created</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">article</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleModelTest.test_article_has_title">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest.test_article_has_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_article_has_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Article has the expected title</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s1">&#39;Test Article&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleModelTest.test_article_has_content">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest.test_article_has_content">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_article_has_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an Article has content</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+                         <span class="s1">&#39;This is the content of the test article.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleModelTest.test_article_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleModelTest.test_article_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_article_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns title</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">article</span><span class="p">),</span> <span class="s1">&#39;Test Article&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Newsletter Model Tests</span>
+<div class="viewcode-block" id="NewsletterModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="NewsletterModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a Newsletter object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testpublisher2&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s1">&#39;publisher&#39;</span><span class="p">),</span>
+            <span class="n">publisher_name</span><span class="o">=</span><span class="s1">&#39;Test Publisher 2&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;This is another test publisher.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newsletter</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">newsletter_title</span><span class="o">=</span><span class="s1">&#39;Test Newsletter&#39;</span><span class="p">,</span>
+            <span class="n">newsletter_content</span><span class="o">=</span><span class="s1">&#39;This is the content of the test newsletter.&#39;</span><span class="p">,</span>
+            <span class="n">publisher</span><span class="o">=</span><span class="n">publisher</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NewsletterModelTest.test_newsletter_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_newsletter_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Newsletter can be created</span>
+        <span class="n">newsletter</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">newsletter</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NewsletterModelTest.test_newsletter_has_title">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_has_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_newsletter_has_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Newsletter has the expected title</span>
+        <span class="n">newsletter</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">newsletter</span><span class="o">.</span><span class="n">newsletter_title</span><span class="p">,</span> <span class="s1">&#39;Test Newsletter&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NewsletterModelTest.test_newsletter_has_content">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_has_content">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_newsletter_has_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a Newsletter has content</span>
+        <span class="n">newsletter</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">newsletter</span><span class="o">.</span><span class="n">newsletter_content</span><span class="p">,</span>
+                         <span class="s1">&#39;This is the content of the test newsletter.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NewsletterModelTest.test_newsletter_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_newsletter_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns title</span>
+        <span class="n">newsletter</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">newsletter</span><span class="p">),</span> <span class="s1">&#39;Test Newsletter&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># AdminApproval Model Tests</span>
+<div class="viewcode-block" id="AdminApprovalModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdminApprovalModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="AdminApprovalModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create an AdminApproval object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testuser2&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">admin_approval</span> <span class="o">=</span> <span class="n">AdminApproval</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">is_approved</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">declined_for</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdminApprovalModelTest.test_admin_approval_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_admin_approval_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that an AdminApproval can be created</span>
+        <span class="n">admin_approval</span> <span class="o">=</span> <span class="n">AdminApproval</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">admin_approval</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdminApprovalModelTest.test_admin_approval_is_approved">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_is_approved">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_admin_approval_is_approved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that AdminApproval has the expected approval status</span>
+        <span class="n">admin_approval</span> <span class="o">=</span> <span class="n">AdminApproval</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">admin_approval</span><span class="o">.</span><span class="n">is_approved</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdminApprovalModelTest.test_admin_approval_declined_for">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_declined_for">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_admin_approval_declined_for</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that AdminApproval has the expected declined reason</span>
+        <span class="n">admin_approval</span> <span class="o">=</span> <span class="n">AdminApproval</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">admin_approval</span><span class="o">.</span><span class="n">declined_for</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdminApprovalModelTest.test_admin_approval_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_admin_approval_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns username with status</span>
+        <span class="n">admin_approval</span> <span class="o">=</span> <span class="n">AdminApproval</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">admin_approval</span><span class="p">),</span> <span class="s1">&#39;testuser2 - Approved&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># ResetToken Model Tests</span>
+<div class="viewcode-block" id="ResetTokenModelTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ResetTokenModelTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResetTokenModelTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ResetTokenModelTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ResetTokenModelTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a ResetToken object for testing</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;testuser3&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_token</span> <span class="o">=</span> <span class="n">ResetToken</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">token</span><span class="o">=</span><span class="s1">&#39;resettoken123&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResetTokenModelTest.test_reset_token_creation">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reset_token_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that a ResetToken can be created</span>
+        <span class="n">reset_token</span> <span class="o">=</span> <span class="n">ResetToken</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">reset_token</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResetTokenModelTest.test_reset_token_has_token">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_has_token">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reset_token_has_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that ResetToken has the expected token value</span>
+        <span class="n">reset_token</span> <span class="o">=</span> <span class="n">ResetToken</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">reset_token</span><span class="o">.</span><span class="n">token</span><span class="p">,</span> <span class="s1">&#39;resettoken123&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResetTokenModelTest.test_reset_token_str_method">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_str_method">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reset_token_str_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test the __str__ method returns token</span>
+        <span class="n">reset_token</span> <span class="o">=</span> <span class="n">ResetToken</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reset_token</span><span class="p">),</span> <span class="s1">&#39;resettoken123&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Serializer Tests</span>
+<div class="viewcode-block" id="CustomUserSerializerTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserSerializerTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomUserSerializerTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomUserSerializerTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserSerializerTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User and CustomUser for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;serializeruser&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomUserSerializerTest.test_custom_user_serialization">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.CustomUserSerializerTest.test_custom_user_serialization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_custom_user_serialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">CustomUserSerializer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="s1">&#39;serializeruser&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">],</span> <span class="s1">&#39;reader&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Publisher Serializer Tests</span>
+<div class="viewcode-block" id="PublisherSerializerTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherSerializerTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherSerializerTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="PublisherSerializerTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherSerializerTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User, CustomUser, and Publisher for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;serializerpublisher&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;publisher&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">publisher_name</span><span class="o">=</span><span class="s1">&#39;Serializer Publisher&#39;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Publisher for serialization tests.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PublisherSerializerTest.test_publisher_serialization">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.PublisherSerializerTest.test_publisher_serialization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_publisher_serialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Test that Publisher can be serialized correctly</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">PublisherSerializer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">publisher</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span>
+                         <span class="p">[</span><span class="s1">&#39;custom_user&#39;</span><span class="p">][</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;serializerpublisher&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;publisher_name&#39;</span><span class="p">],</span> <span class="s1">&#39;Serializer Publisher&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Publisher for serialization tests.&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Journalist Serializer Tests</span>
+<div class="viewcode-block" id="JournalistSerializerTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistSerializerTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JournalistSerializerTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="JournalistSerializerTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistSerializerTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User, CustomUser, and Journalist for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;serializerjournalist&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;journalist&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">journalist_name</span><span class="o">=</span><span class="s1">&#39;Serializer Journalist&#39;</span><span class="p">,</span>
+            <span class="n">bio</span><span class="o">=</span><span class="s1">&#39;Journalist for serialization tests.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JournalistSerializerTest.test_journalist_serialization">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.JournalistSerializerTest.test_journalist_serialization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_serialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">JournalistSerializer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journalist</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;custom_user&#39;</span><span class="p">][</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;serializerjournalist&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;journalist_name&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Serializer Journalist&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;bio&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Journalist for serialization tests.&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Article Serializer Tests</span>
+<div class="viewcode-block" id="ArticleSerializerTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleSerializerTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleSerializerTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ArticleSerializerTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleSerializerTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User, CustomUser, Journalist, and Article for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;serializerarticle&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;journalist&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">journalist</span> <span class="o">=</span> <span class="n">Journalist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">journalist_name</span><span class="o">=</span><span class="s1">&#39;Serializer Journalist&#39;</span><span class="p">,</span>
+            <span class="n">bio</span><span class="o">=</span><span class="s1">&#39;Journalist for serialization tests.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Serializer Article&#39;</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s1">&#39;Content for serialization tests.&#39;</span><span class="p">,</span>
+            <span class="n">journalist</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">journalist</span><span class="p">,</span>
+            <span class="n">status</span><span class="o">=</span><span class="s1">&#39;published&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleSerializerTest.test_article_serialization">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ArticleSerializerTest.test_article_serialization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_article_serialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">ArticleSerializer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">article</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Serializer Article&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Content for serialization tests.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span>
+                         <span class="p">[</span><span class="s1">&#39;journalist&#39;</span><span class="p">][</span><span class="s1">&#39;custom_user&#39;</span><span class="p">]</span>
+                         <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;serializerarticle&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;published&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Reader Serializer Tests</span>
+<div class="viewcode-block" id="ReaderSerializerTest">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderSerializerTest">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReaderSerializerTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ReaderSerializerTest.setUp">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderSerializerTest.setUp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a User, CustomUser, and Reader for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;serializerreader&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s1">&#39;testpass&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s1">&#39;reader&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">custom_user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_user</span><span class="p">,</span>
+            <span class="n">reader_name</span><span class="o">=</span><span class="s1">&#39;Serializer Reader&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReaderSerializerTest.test_reader_serialization">
+<a class="viewcode-back" href="../../news2u.html#news2u.tests.ReaderSerializerTest.test_reader_serialization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reader_serialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">ReaderSerializer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;custom_user&#39;</span><span class="p">][</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;serializerreader&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;reader_name&#39;</span><span class="p">],</span> <span class="s1">&#39;Serializer Reader&#39;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Elizabeth Fuzy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

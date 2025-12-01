@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>news2u &mdash; News2U 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d7bb8d4d"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="news2u package" href="news2u.html" />
+    <link rel="prev" title="News2U documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            News2U
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">news2u</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html">news2u package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">News2U</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">news2u</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="news2u">
+<h1>news2u<a class="headerlink" href="#news2u" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="news2u.html">news2u package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.functions.html">news2u.functions package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.functions.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.functions.html#module-news2u.functions.tweet">news2u.functions.tweet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.functions.html#module-news2u.functions">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.management.html">news2u.management package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.management.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.management.html#module-news2u.management">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.migrations.html">news2u.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.migrations.html#module-news2u.migrations.0001_initial">news2u.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.migrations.html#module-news2u.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.admin">news2u.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.actions"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.approve_user"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.approve_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.decline_user"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.decline_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.fields"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.get_username"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.get_username()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.list_editable"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.list_editable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.list_filter"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.list_filter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.media"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.readonly_fields"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.readonly_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.AdminApprovalAdmin.search_fields"><code class="docutils literal notranslate"><span class="pre">AdminApprovalAdmin.search_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.actions"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.approve_user"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.approve_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.decline_user"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.decline_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.fields"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.get_bio"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.get_bio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.get_username"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.get_username()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.list_filter"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.list_filter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.media"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.readonly_fields"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.readonly_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.admin.CustomUserAdmin.search_fields"><code class="docutils literal notranslate"><span class="pre">CustomUserAdmin.search_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.apps">news2u.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.apps.News2UConfig"><code class="docutils literal notranslate"><span class="pre">News2UConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.apps.News2UConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">News2UConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.apps.News2UConfig.name"><code class="docutils literal notranslate"><span class="pre">News2UConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.apps.News2UConfig.ready"><code class="docutils literal notranslate"><span class="pre">News2UConfig.ready()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.forms">news2u.forms module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.is_approved"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.declined_for"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.declined_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.Meta"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.base_fields"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.AdminApprovalForm.media"><code class="docutils literal notranslate"><span class="pre">AdminApprovalForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm"><code class="docutils literal notranslate"><span class="pre">ArticleForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.article_title"><code class="docutils literal notranslate"><span class="pre">ArticleForm.article_title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.article_content"><code class="docutils literal notranslate"><span class="pre">ArticleForm.article_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.article_photo"><code class="docutils literal notranslate"><span class="pre">ArticleForm.article_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.model"><code class="docutils literal notranslate"><span class="pre">ArticleForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.fields"><code class="docutils literal notranslate"><span class="pre">ArticleForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.Meta"><code class="docutils literal notranslate"><span class="pre">ArticleForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.base_fields"><code class="docutils literal notranslate"><span class="pre">ArticleForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">ArticleForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ArticleForm.media"><code class="docutils literal notranslate"><span class="pre">ArticleForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.editor_name"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.editor_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.editor_interests"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.editor_interests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.editor_bio"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.editor_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.editor_photo"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.editor_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.Meta"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.base_fields"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.EditorRegistrationForm.media"><code class="docutils literal notranslate"><span class="pre">EditorRegistrationForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.journalist_name"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.journalist_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.journalist_bio"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.journalist_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.journalist_photo"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.journalist_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.Meta"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.base_fields"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.JournalistRegistrationForm.media"><code class="docutils literal notranslate"><span class="pre">JournalistRegistrationForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm"><code class="docutils literal notranslate"><span class="pre">LoginForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.username"><code class="docutils literal notranslate"><span class="pre">LoginForm.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.password"><code class="docutils literal notranslate"><span class="pre">LoginForm.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.model"><code class="docutils literal notranslate"><span class="pre">LoginForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.fields"><code class="docutils literal notranslate"><span class="pre">LoginForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.base_fields"><code class="docutils literal notranslate"><span class="pre">LoginForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">LoginForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginForm.media"><code class="docutils literal notranslate"><span class="pre">LoginForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.LoginFormSerializer"><code class="docutils literal notranslate"><span class="pre">LoginFormSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.LoginFormSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">LoginFormSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm"><code class="docutils literal notranslate"><span class="pre">NewsletterForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.articles"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.newsletter_title"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.newsletter_title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.newsletter_content"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.newsletter_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.model"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.fields"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.Meta"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.base_fields"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.NewsletterForm.media"><code class="docutils literal notranslate"><span class="pre">NewsletterForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.publisher_name"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.publisher_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.description"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.publisher_logo"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.publisher_logo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.Meta"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.base_fields"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.PublisherRegistrationForm.media"><code class="docutils literal notranslate"><span class="pre">PublisherRegistrationForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.reader_name"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.reader_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.subscription"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.subscription</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.Meta"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.base_fields"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.ReaderRegistrationForm.media"><code class="docutils literal notranslate"><span class="pre">ReaderRegistrationForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.editor"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.editor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.model"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.fields"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.base_fields"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SelectEditorForm.media"><code class="docutils literal notranslate"><span class="pre">SelectEditorForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.publisher"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.model"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.fields"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.base_fields"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubmitToPublisherForm.media"><code class="docutils literal notranslate"><span class="pre">SubmitToPublisherForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.journalists"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.publishers"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.model"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.fields"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.base_fields"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.base_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.declared_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionForm.media"><code class="docutils literal notranslate"><span class="pre">SubscriptionForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionFormSerializer"><code class="docutils literal notranslate"><span class="pre">SubscriptionFormSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.forms.SubscriptionFormSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SubscriptionFormSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.models">news2u.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval"><code class="docutils literal notranslate"><span class="pre">AdminApproval</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.DECLINE_REASONS"><code class="docutils literal notranslate"><span class="pre">AdminApproval.DECLINE_REASONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">AdminApproval.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">AdminApproval.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.created_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.declined_for"><code class="docutils literal notranslate"><span class="pre">AdminApproval.declined_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_declined_for_display"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_declined_for_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_next_by_requested_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_next_by_requested_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_previous_by_requested_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_previous_by_requested_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.get_role_display"><code class="docutils literal notranslate"><span class="pre">AdminApproval.get_role_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.id"><code class="docutils literal notranslate"><span class="pre">AdminApproval.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.is_approved"><code class="docutils literal notranslate"><span class="pre">AdminApproval.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.objects"><code class="docutils literal notranslate"><span class="pre">AdminApproval.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.requested_at"><code class="docutils literal notranslate"><span class="pre">AdminApproval.requested_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.role"><code class="docutils literal notranslate"><span class="pre">AdminApproval.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.user"><code class="docutils literal notranslate"><span class="pre">AdminApproval.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.AdminApproval.user_id"><code class="docutils literal notranslate"><span class="pre">AdminApproval.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Article"><code class="docutils literal notranslate"><span class="pre">Article</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Article.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Article.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">Article.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.article_content"><code class="docutils literal notranslate"><span class="pre">Article.article_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.article_photo"><code class="docutils literal notranslate"><span class="pre">Article.article_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.article_preview"><code class="docutils literal notranslate"><span class="pre">Article.article_preview()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.article_title"><code class="docutils literal notranslate"><span class="pre">Article.article_title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.articles_in_newsletters"><code class="docutils literal notranslate"><span class="pre">Article.articles_in_newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.editor"><code class="docutils literal notranslate"><span class="pre">Article.editor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.editor_comments"><code class="docutils literal notranslate"><span class="pre">Article.editor_comments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.editor_id"><code class="docutils literal notranslate"><span class="pre">Article.editor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.get_status_display"><code class="docutils literal notranslate"><span class="pre">Article.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.id"><code class="docutils literal notranslate"><span class="pre">Article.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.is_approved"><code class="docutils literal notranslate"><span class="pre">Article.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.journalist"><code class="docutils literal notranslate"><span class="pre">Article.journalist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.journalist_id"><code class="docutils literal notranslate"><span class="pre">Article.journalist_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.objects"><code class="docutils literal notranslate"><span class="pre">Article.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.published_at"><code class="docutils literal notranslate"><span class="pre">Article.published_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.publisher"><code class="docutils literal notranslate"><span class="pre">Article.publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.publisher_id"><code class="docutils literal notranslate"><span class="pre">Article.publisher_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.status"><code class="docutils literal notranslate"><span class="pre">Article.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Article.submitted_at"><code class="docutils literal notranslate"><span class="pre">Article.submitted_at</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.ArticleSerializer"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ArticleSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.CustomUser"><code class="docutils literal notranslate"><span class="pre">CustomUser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.user"><code class="docutils literal notranslate"><span class="pre">CustomUser.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.email"><code class="docutils literal notranslate"><span class="pre">CustomUser.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.role"><code class="docutils literal notranslate"><span class="pre">CustomUser.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.created_at"><code class="docutils literal notranslate"><span class="pre">CustomUser.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.is_approved"><code class="docutils literal notranslate"><span class="pre">CustomUser.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.declined_for"><code class="docutils literal notranslate"><span class="pre">CustomUser.declined_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.subscribed_publishers"><code class="docutils literal notranslate"><span class="pre">CustomUser.subscribed_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.subscribed_journalists"><code class="docutils literal notranslate"><span class="pre">CustomUser.subscribed_journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">CustomUser.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">CustomUser.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.ROLES"><code class="docutils literal notranslate"><span class="pre">CustomUser.ROLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.adminapproval"><code class="docutils literal notranslate"><span class="pre">CustomUser.adminapproval</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id0"><code class="docutils literal notranslate"><span class="pre">CustomUser.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id1"><code class="docutils literal notranslate"><span class="pre">CustomUser.declined_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id2"><code class="docutils literal notranslate"><span class="pre">CustomUser.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomUser.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomUser.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.get_role_display"><code class="docutils literal notranslate"><span class="pre">CustomUser.get_role_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.id"><code class="docutils literal notranslate"><span class="pre">CustomUser.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id3"><code class="docutils literal notranslate"><span class="pre">CustomUser.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.journalist_articles"><code class="docutils literal notranslate"><span class="pre">CustomUser.journalist_articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.journalist_newsletters"><code class="docutils literal notranslate"><span class="pre">CustomUser.journalist_newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.objects"><code class="docutils literal notranslate"><span class="pre">CustomUser.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id4"><code class="docutils literal notranslate"><span class="pre">CustomUser.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.save"><code class="docutils literal notranslate"><span class="pre">CustomUser.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id5"><code class="docutils literal notranslate"><span class="pre">CustomUser.subscribed_journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id6"><code class="docutils literal notranslate"><span class="pre">CustomUser.subscribed_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id7"><code class="docutils literal notranslate"><span class="pre">CustomUser.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUser.user_id"><code class="docutils literal notranslate"><span class="pre">CustomUser.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.CustomUserSerializer"><code class="docutils literal notranslate"><span class="pre">CustomUserSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.CustomUserSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">CustomUserSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Editor"><code class="docutils literal notranslate"><span class="pre">Editor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.user"><code class="docutils literal notranslate"><span class="pre">Editor.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.editor_name"><code class="docutils literal notranslate"><span class="pre">Editor.editor_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.editor_interests"><code class="docutils literal notranslate"><span class="pre">Editor.editor_interests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.editor_bio"><code class="docutils literal notranslate"><span class="pre">Editor.editor_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.editor_photo"><code class="docutils literal notranslate"><span class="pre">Editor.editor_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.publishers"><code class="docutils literal notranslate"><span class="pre">Editor.publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Editor.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Editor.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.article_by_editor"><code class="docutils literal notranslate"><span class="pre">Editor.article_by_editor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.associated_publishers"><code class="docutils literal notranslate"><span class="pre">Editor.associated_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.edited_newsletters"><code class="docutils literal notranslate"><span class="pre">Editor.edited_newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id8"><code class="docutils literal notranslate"><span class="pre">Editor.editor_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id9"><code class="docutils literal notranslate"><span class="pre">Editor.editor_interests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id10"><code class="docutils literal notranslate"><span class="pre">Editor.editor_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id11"><code class="docutils literal notranslate"><span class="pre">Editor.editor_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.id"><code class="docutils literal notranslate"><span class="pre">Editor.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.journalists"><code class="docutils literal notranslate"><span class="pre">Editor.journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.objects"><code class="docutils literal notranslate"><span class="pre">Editor.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id12"><code class="docutils literal notranslate"><span class="pre">Editor.publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id13"><code class="docutils literal notranslate"><span class="pre">Editor.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Editor.user_id"><code class="docutils literal notranslate"><span class="pre">Editor.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Journalist"><code class="docutils literal notranslate"><span class="pre">Journalist</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.user"><code class="docutils literal notranslate"><span class="pre">Journalist.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.journalist_name"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.journalist_bio"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.journalist_photo"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.editors"><code class="docutils literal notranslate"><span class="pre">Journalist.editors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Journalist.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Journalist.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.article_by_journalist"><code class="docutils literal notranslate"><span class="pre">Journalist.article_by_journalist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.associated_publishers"><code class="docutils literal notranslate"><span class="pre">Journalist.associated_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.created_at"><code class="docutils literal notranslate"><span class="pre">Journalist.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id14"><code class="docutils literal notranslate"><span class="pre">Journalist.editors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Journalist.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Journalist.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.id"><code class="docutils literal notranslate"><span class="pre">Journalist.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id15"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id16"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.journalist_newsletters"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id17"><code class="docutils literal notranslate"><span class="pre">Journalist.journalist_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.objects"><code class="docutils literal notranslate"><span class="pre">Journalist.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.publishers"><code class="docutils literal notranslate"><span class="pre">Journalist.publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.reader_subscribers"><code class="docutils literal notranslate"><span class="pre">Journalist.reader_subscribers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id18"><code class="docutils literal notranslate"><span class="pre">Journalist.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Journalist.user_id"><code class="docutils literal notranslate"><span class="pre">Journalist.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.JournalistSerializer"><code class="docutils literal notranslate"><span class="pre">JournalistSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.JournalistSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">JournalistSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Newsletter"><code class="docutils literal notranslate"><span class="pre">Newsletter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Newsletter.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Newsletter.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">Newsletter.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.articles"><code class="docutils literal notranslate"><span class="pre">Newsletter.articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.editor"><code class="docutils literal notranslate"><span class="pre">Newsletter.editor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.editor_id"><code class="docutils literal notranslate"><span class="pre">Newsletter.editor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.get_status_display"><code class="docutils literal notranslate"><span class="pre">Newsletter.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.id"><code class="docutils literal notranslate"><span class="pre">Newsletter.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.is_approved"><code class="docutils literal notranslate"><span class="pre">Newsletter.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.journalist"><code class="docutils literal notranslate"><span class="pre">Newsletter.journalist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.journalist_id"><code class="docutils literal notranslate"><span class="pre">Newsletter.journalist_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.newsletter_content"><code class="docutils literal notranslate"><span class="pre">Newsletter.newsletter_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.newsletter_title"><code class="docutils literal notranslate"><span class="pre">Newsletter.newsletter_title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.objects"><code class="docutils literal notranslate"><span class="pre">Newsletter.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.published_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.published_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.publisher"><code class="docutils literal notranslate"><span class="pre">Newsletter.publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.publisher_id"><code class="docutils literal notranslate"><span class="pre">Newsletter.publisher_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.status"><code class="docutils literal notranslate"><span class="pre">Newsletter.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Newsletter.submitted_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.submitted_at</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Publisher"><code class="docutils literal notranslate"><span class="pre">Publisher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.user"><code class="docutils literal notranslate"><span class="pre">Publisher.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.publisher_name"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.publisher_description"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.publisher_logo"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_logo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.journalists"><code class="docutils literal notranslate"><span class="pre">Publisher.journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Publisher.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Publisher.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.editors"><code class="docutils literal notranslate"><span class="pre">Publisher.editors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.id"><code class="docutils literal notranslate"><span class="pre">Publisher.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id19"><code class="docutils literal notranslate"><span class="pre">Publisher.journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.newsletters"><code class="docutils literal notranslate"><span class="pre">Publisher.newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.objects"><code class="docutils literal notranslate"><span class="pre">Publisher.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.published_by_publisher"><code class="docutils literal notranslate"><span class="pre">Publisher.published_by_publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id20"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id21"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_logo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id22"><code class="docutils literal notranslate"><span class="pre">Publisher.publisher_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.reader_subscribers"><code class="docutils literal notranslate"><span class="pre">Publisher.reader_subscribers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#id23"><code class="docutils literal notranslate"><span class="pre">Publisher.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Publisher.user_id"><code class="docutils literal notranslate"><span class="pre">Publisher.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.PublisherSerializer"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.PublisherSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Reader.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Reader.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.email"><code class="docutils literal notranslate"><span class="pre">Reader.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.get_next_by_subscribed_at"><code class="docutils literal notranslate"><span class="pre">Reader.get_next_by_subscribed_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.get_previous_by_subscribed_at"><code class="docutils literal notranslate"><span class="pre">Reader.get_previous_by_subscribed_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.id"><code class="docutils literal notranslate"><span class="pre">Reader.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.objects"><code class="docutils literal notranslate"><span class="pre">Reader.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.reader_interests"><code class="docutils literal notranslate"><span class="pre">Reader.reader_interests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.reader_name"><code class="docutils literal notranslate"><span class="pre">Reader.reader_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.reader_photo"><code class="docutils literal notranslate"><span class="pre">Reader.reader_photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.subscribed_at"><code class="docutils literal notranslate"><span class="pre">Reader.subscribed_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.user"><code class="docutils literal notranslate"><span class="pre">Reader.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.Reader.user_id"><code class="docutils literal notranslate"><span class="pre">Reader.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.ReaderSerializer"><code class="docutils literal notranslate"><span class="pre">ReaderSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ReaderSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ReaderSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.models.ResetToken"><code class="docutils literal notranslate"><span class="pre">ResetToken</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">ResetToken.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">ResetToken.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.expiry_date"><code class="docutils literal notranslate"><span class="pre">ResetToken.expiry_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.get_next_by_expiry_date"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_next_by_expiry_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.get_previous_by_expiry_date"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_previous_by_expiry_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.id"><code class="docutils literal notranslate"><span class="pre">ResetToken.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.is_valid"><code class="docutils literal notranslate"><span class="pre">ResetToken.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.objects"><code class="docutils literal notranslate"><span class="pre">ResetToken.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.token"><code class="docutils literal notranslate"><span class="pre">ResetToken.token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.used"><code class="docutils literal notranslate"><span class="pre">ResetToken.used</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.user"><code class="docutils literal notranslate"><span class="pre">ResetToken.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.models.ResetToken.user_id"><code class="docutils literal notranslate"><span class="pre">ResetToken.user_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.tests">news2u.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_creation"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest.test_admin_approval_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_declined_for"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest.test_admin_approval_declined_for()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_is_approved"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest.test_admin_approval_is_approved()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.AdminApprovalModelTest.test_admin_approval_str_method"><code class="docutils literal notranslate"><span class="pre">AdminApprovalModelTest.test_admin_approval_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest.test_article_creation"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest.test_article_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest.test_article_has_content"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest.test_article_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest.test_article_has_title"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest.test_article_has_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleModelTest.test_article_str_method"><code class="docutils literal notranslate"><span class="pre">ArticleModelTest.test_article_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.ArticleSerializerTest"><code class="docutils literal notranslate"><span class="pre">ArticleSerializerTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleSerializerTest.setUp"><code class="docutils literal notranslate"><span class="pre">ArticleSerializerTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ArticleSerializerTest.test_article_serialization"><code class="docutils literal notranslate"><span class="pre">ArticleSerializerTest.test_article_serialization()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserModelTest"><code class="docutils literal notranslate"><span class="pre">CustomUserModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">CustomUserModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_creation"><code class="docutils literal notranslate"><span class="pre">CustomUserModelTest.test_custom_user_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_has_role"><code class="docutils literal notranslate"><span class="pre">CustomUserModelTest.test_custom_user_has_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserModelTest.test_custom_user_str_method"><code class="docutils literal notranslate"><span class="pre">CustomUserModelTest.test_custom_user_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserSerializerTest"><code class="docutils literal notranslate"><span class="pre">CustomUserSerializerTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserSerializerTest.setUp"><code class="docutils literal notranslate"><span class="pre">CustomUserSerializerTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.CustomUserSerializerTest.test_custom_user_serialization"><code class="docutils literal notranslate"><span class="pre">CustomUserSerializerTest.test_custom_user_serialization()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest"><code class="docutils literal notranslate"><span class="pre">EditorModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">EditorModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest.test_editor_creation"><code class="docutils literal notranslate"><span class="pre">EditorModelTest.test_editor_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest.test_editor_has_bio"><code class="docutils literal notranslate"><span class="pre">EditorModelTest.test_editor_has_bio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest.test_editor_has_name"><code class="docutils literal notranslate"><span class="pre">EditorModelTest.test_editor_has_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.EditorModelTest.test_editor_str_method"><code class="docutils literal notranslate"><span class="pre">EditorModelTest.test_editor_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest.test_journalist_creation"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest.test_journalist_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest.test_journalist_has_bio"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest.test_journalist_has_bio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest.test_journalist_has_name"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest.test_journalist_has_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistModelTest.test_journalist_str_method"><code class="docutils literal notranslate"><span class="pre">JournalistModelTest.test_journalist_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.JournalistSerializerTest"><code class="docutils literal notranslate"><span class="pre">JournalistSerializerTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistSerializerTest.setUp"><code class="docutils literal notranslate"><span class="pre">JournalistSerializerTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.JournalistSerializerTest.test_journalist_serialization"><code class="docutils literal notranslate"><span class="pre">JournalistSerializerTest.test_journalist_serialization()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_creation"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest.test_newsletter_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_has_content"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest.test_newsletter_has_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_has_title"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest.test_newsletter_has_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.NewsletterModelTest.test_newsletter_str_method"><code class="docutils literal notranslate"><span class="pre">NewsletterModelTest.test_newsletter_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest.test_publisher_creation"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest.test_publisher_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest.test_publisher_has_description"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest.test_publisher_has_description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest.test_publisher_has_name"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest.test_publisher_has_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherModelTest.test_publisher_str_method"><code class="docutils literal notranslate"><span class="pre">PublisherModelTest.test_publisher_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.PublisherSerializerTest"><code class="docutils literal notranslate"><span class="pre">PublisherSerializerTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherSerializerTest.setUp"><code class="docutils literal notranslate"><span class="pre">PublisherSerializerTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.PublisherSerializerTest.test_publisher_serialization"><code class="docutils literal notranslate"><span class="pre">PublisherSerializerTest.test_publisher_serialization()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.ReaderModelTest"><code class="docutils literal notranslate"><span class="pre">ReaderModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">ReaderModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderModelTest.test_reader_creation"><code class="docutils literal notranslate"><span class="pre">ReaderModelTest.test_reader_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderModelTest.test_reader_has_name"><code class="docutils literal notranslate"><span class="pre">ReaderModelTest.test_reader_has_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderModelTest.test_reader_str_method"><code class="docutils literal notranslate"><span class="pre">ReaderModelTest.test_reader_str_method()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.ReaderSerializerTest"><code class="docutils literal notranslate"><span class="pre">ReaderSerializerTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderSerializerTest.setUp"><code class="docutils literal notranslate"><span class="pre">ReaderSerializerTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ReaderSerializerTest.test_reader_serialization"><code class="docutils literal notranslate"><span class="pre">ReaderSerializerTest.test_reader_serialization()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.tests.ResetTokenModelTest"><code class="docutils literal notranslate"><span class="pre">ResetTokenModelTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ResetTokenModelTest.setUp"><code class="docutils literal notranslate"><span class="pre">ResetTokenModelTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_creation"><code class="docutils literal notranslate"><span class="pre">ResetTokenModelTest.test_reset_token_creation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_has_token"><code class="docutils literal notranslate"><span class="pre">ResetTokenModelTest.test_reset_token_has_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="news2u.html#news2u.tests.ResetTokenModelTest.test_reset_token_str_method"><code class="docutils literal notranslate"><span class="pre">ResetTokenModelTest.test_reset_token_str_method()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.urls">news2u.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u.views">news2u.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.accept_article"><code class="docutils literal notranslate"><span class="pre">accept_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.accept_newsletter"><code class="docutils literal notranslate"><span class="pre">accept_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.add_article_to_newsletter"><code class="docutils literal notranslate"><span class="pre">add_article_to_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.api_manage_subscriptions"><code class="docutils literal notranslate"><span class="pre">api_manage_subscriptions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.api_my_published_articles"><code class="docutils literal notranslate"><span class="pre">api_my_published_articles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.api_read_article"><code class="docutils literal notranslate"><span class="pre">api_read_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.api_user_login"><code class="docutils literal notranslate"><span class="pre">api_user_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.api_user_logout"><code class="docutils literal notranslate"><span class="pre">api_user_logout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.article_approved"><code class="docutils literal notranslate"><span class="pre">article_approved()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.article_detail"><code class="docutils literal notranslate"><span class="pre">article_detail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.article_submit_success"><code class="docutils literal notranslate"><span class="pre">article_submit_success()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.build_email"><code class="docutils literal notranslate"><span class="pre">build_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.create_article"><code class="docutils literal notranslate"><span class="pre">create_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.create_newsletter"><code class="docutils literal notranslate"><span class="pre">create_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.create_publisher_newsletter"><code class="docutils literal notranslate"><span class="pre">create_publisher_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.decline_article"><code class="docutils literal notranslate"><span class="pre">decline_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.delete_article"><code class="docutils literal notranslate"><span class="pre">delete_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.delete_newsletter"><code class="docutils literal notranslate"><span class="pre">delete_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.draft_articles"><code class="docutils literal notranslate"><span class="pre">draft_articles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.draft_newsletters"><code class="docutils literal notranslate"><span class="pre">draft_newsletters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.edit_article"><code class="docutils literal notranslate"><span class="pre">edit_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.edit_newsletter"><code class="docutils literal notranslate"><span class="pre">edit_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.editor_dashboard"><code class="docutils literal notranslate"><span class="pre">editor_dashboard()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.forgot_password"><code class="docutils literal notranslate"><span class="pre">forgot_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.generate_reset_url"><code class="docutils literal notranslate"><span class="pre">generate_reset_url()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.is_editor"><code class="docutils literal notranslate"><span class="pre">is_editor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.is_journalist"><code class="docutils literal notranslate"><span class="pre">is_journalist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.is_publisher"><code class="docutils literal notranslate"><span class="pre">is_publisher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.is_reader"><code class="docutils literal notranslate"><span class="pre">is_reader()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.journalist_dashboard"><code class="docutils literal notranslate"><span class="pre">journalist_dashboard()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.manage_subscriptions"><code class="docutils literal notranslate"><span class="pre">manage_subscriptions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.my_published_articles"><code class="docutils literal notranslate"><span class="pre">my_published_articles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.my_published_newsletters"><code class="docutils literal notranslate"><span class="pre">my_published_newsletters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.newsletter_detail"><code class="docutils literal notranslate"><span class="pre">newsletter_detail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.newsletter_submit_success"><code class="docutils literal notranslate"><span class="pre">newsletter_submit_success()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publish_by_publisher"><code class="docutils literal notranslate"><span class="pre">publish_by_publisher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publish_independent"><code class="docutils literal notranslate"><span class="pre">publish_independent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publish_newsletter"><code class="docutils literal notranslate"><span class="pre">publish_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publish_newsletter_by_publisher"><code class="docutils literal notranslate"><span class="pre">publish_newsletter_by_publisher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publish_success"><code class="docutils literal notranslate"><span class="pre">publish_success()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.publisher_dashboard"><code class="docutils literal notranslate"><span class="pre">publisher_dashboard()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.reader_dashboard"><code class="docutils literal notranslate"><span class="pre">reader_dashboard()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.register_editor"><code class="docutils literal notranslate"><span class="pre">register_editor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.register_journalist"><code class="docutils literal notranslate"><span class="pre">register_journalist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.register_publisher"><code class="docutils literal notranslate"><span class="pre">register_publisher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.register_reader"><code class="docutils literal notranslate"><span class="pre">register_reader()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.registration_pending"><code class="docutils literal notranslate"><span class="pre">registration_pending()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.reset_password"><code class="docutils literal notranslate"><span class="pre">reset_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.review_article"><code class="docutils literal notranslate"><span class="pre">review_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.review_newsletter"><code class="docutils literal notranslate"><span class="pre">review_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.select_editor"><code class="docutils literal notranslate"><span class="pre">select_editor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.select_editor_newsletter"><code class="docutils literal notranslate"><span class="pre">select_editor_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.send_article_email"><code class="docutils literal notranslate"><span class="pre">send_article_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.send_newsletter_email"><code class="docutils literal notranslate"><span class="pre">send_newsletter_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.send_password_reset"><code class="docutils literal notranslate"><span class="pre">send_password_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.submit_to_publisher"><code class="docutils literal notranslate"><span class="pre">submit_to_publisher()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.user_login"><code class="docutils literal notranslate"><span class="pre">user_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.user_logout"><code class="docutils literal notranslate"><span class="pre">user_logout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_accepted_articles"><code class="docutils literal notranslate"><span class="pre">view_accepted_articles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_accepted_newsletters"><code class="docutils literal notranslate"><span class="pre">view_accepted_newsletters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_all_editors"><code class="docutils literal notranslate"><span class="pre">view_all_editors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_all_journalists"><code class="docutils literal notranslate"><span class="pre">view_all_journalists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_all_publishers"><code class="docutils literal notranslate"><span class="pre">view_all_publishers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_article_publication_requests"><code class="docutils literal notranslate"><span class="pre">view_article_publication_requests()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_edited_article"><code class="docutils literal notranslate"><span class="pre">view_edited_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_edited_newsletter"><code class="docutils literal notranslate"><span class="pre">view_edited_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_my_editors"><code class="docutils literal notranslate"><span class="pre">view_my_editors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_my_journalists"><code class="docutils literal notranslate"><span class="pre">view_my_journalists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_my_publishers"><code class="docutils literal notranslate"><span class="pre">view_my_publishers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_pending_registration"><code class="docutils literal notranslate"><span class="pre">view_pending_registration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_published_article"><code class="docutils literal notranslate"><span class="pre">view_published_article()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_published_newsletter"><code class="docutils literal notranslate"><span class="pre">view_published_newsletter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_requests"><code class="docutils literal notranslate"><span class="pre">view_requests()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_submitted_articles"><code class="docutils literal notranslate"><span class="pre">view_submitted_articles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_submitted_newsletters"><code class="docutils literal notranslate"><span class="pre">view_submitted_newsletters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="news2u.html#news2u.views.view_subscriber_newsletters"><code class="docutils literal notranslate"><span class="pre">view_subscriber_newsletters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="news2u.html#module-news2u">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="News2U documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="news2u.html" class="btn btn-neutral float-right" title="news2u package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Elizabeth Fuzy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
