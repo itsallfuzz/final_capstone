@@ -70,7 +70,7 @@ retrieving of articles and newsletters (See Planning Folder)
 - certifi==2025.11.12
 - charset-normalizer==3.4.4
 - crispy-bootstrap4==2025.6
-- Django==5.2.8
+- Django==4.2.16
 - django-crispy-forms==2.5
 - djangorestframework==3.16.1
 - idna==3.11
