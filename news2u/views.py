@@ -94,7 +94,7 @@ def register_publisher(request):
     :type request: HttpRequest
 
     :return: Redirect to pending approval
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
 
     if request.method == 'POST':
@@ -169,7 +169,7 @@ def register_editor(request):
     :type request: HttpRequest
 
     :return: Redirect to pending approval
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
     if request.method == 'POST':
         form = EditorRegistrationForm(request.POST, request.FILES)
@@ -239,7 +239,7 @@ def register_journalist(request):
     :type request: HttpRequest
 
     :return: Redirect to pending approval
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
     if request.method == 'POST':
         form = JournalistRegistrationForm(request.POST, request.FILES)
@@ -308,7 +308,7 @@ def register_reader(request):
     :type request: HttpRequest
 
     :return: Login Page or render registration form
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
 
     if request.method == 'POST':
@@ -400,7 +400,7 @@ def user_login(request):
     :type request: HttpRequest
 
     :return: Login page or redirect to dashboard
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -439,7 +439,7 @@ def user_logout(request):
     :type request: HttpRequest
 
     :return: Redirect to login page
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
 
     if request.user.is_authenticated:  # Better check than is not None
@@ -461,7 +461,7 @@ def generate_reset_url(user):
     :type user: User
 
     :return: Password reset URL
-    rtype: str
+    :rtype: str
     """
 
     domain = "http://127.0.0.1:8000/"
@@ -489,7 +489,7 @@ def build_email(user, reset_url):
     :type user: User
 
     :param reset_url: Password reset URL
-    :type reset_url: str
+    :rtype: str
     """
 
     subject = "Password Reset"
@@ -511,7 +511,7 @@ def forgot_password(request):
     :type request: HttpRequest
 
     :return: Render forgot password page
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
 
     return render(request, 'news2u/forgot_password.html')
@@ -525,7 +525,7 @@ def send_password_reset(request):
     :type request: HttpRequest
 
     :return: Redirect to login page with success message
-    rtype: HttpResponse
+    :rtype: HttpResponse
     """
 
     user_email = request.POST.get('email')
@@ -600,7 +600,7 @@ def send_article_email(article):
     :type article: Article
 
     :return: Number of emails sent (in console) (or None)
-    rtype: None
+    :rtype: None
     """
 
     print("=== SEND ARTICLE EMAIL PRINT TO CONSOLE ===")
