@@ -161,6 +161,18 @@ Go to Localhost:
 'http://localhost:8000'
 (Open port and enter 8000)
 
+
+## Important Setup Notes
+## Twitter
+Twitter integration is disabled in the Dockerized version due to
+interactive authentication requirements. To enable, add your API
+keys and uncomment Tweet() in apps.py
+
+## MariaDB
+## Docker Note
+The Dockerised version uses SQLite instead of MariaDB for portability
+and ease of deployment. The production version uses MariaDB.
+
 ## Usage
 
 ## MariaDB migration
