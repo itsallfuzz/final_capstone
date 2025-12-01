@@ -11,6 +11,7 @@ COPY . .
 ENV DJANGO_SETTINGS_MODULE=news_app.settings_docker
 
 RUN python manage.py migrate
+RUN python manage.py setup_groups
 
 EXPOSE 8000
 
