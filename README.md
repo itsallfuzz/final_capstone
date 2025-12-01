@@ -132,6 +132,18 @@ python manage.py runserver
 
 10. Access the application at `http://127.0.0.1:8000/`
 
+
+## Important Setup Notes
+## Twitter
+Twitter integration is disabled in the Dockerized version due to
+interactive authentication requirements. To enable, add your API
+keys and uncomment Tweet() in apps.py
+
+## MariaDB
+## Docker Note
+The Dockerised version uses SQLite instead of MariaDB for portability
+and ease of deployment. The production version uses MariaDB.
+
 ## Usage
 
 ### First Steps

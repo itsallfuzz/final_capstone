@@ -10,4 +10,7 @@ class News2UConfig(AppConfig):
         import os
         # Only initialize in main process, not autoreloader
         if os.environ.get('RUN_MAIN') == 'true':
-            Tweet()
+            # Tweet ()
+            # Twitter integration is disabled in the Docker file
+            # To enable, add you API keys and uncomment Tweet ()
+            pass
