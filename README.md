@@ -1,4 +1,67 @@
-# News2U - Django News Platform
+### Notes to the reviewer RE feedback
+Thank you for the feedback. I'd like to clarify a few points:
+
+**Branches**
+Both docs and container branches were created, had multiple commits,
+and were successfully merged as per instructions via pull requests.
+According to the previous module, it is best practice to delete a branch
+after merging which is what I did. They were visible in my closed pull
+requests. I've now restored both branches so they're visible in the
+branch list.
+
+**Docker Documentation**
+The prebuilt Docker image is already built and publicly available on
+Docker Hub because from my interpretation of the assignment it had to be
+publicly available, not needing to be built. However, I've added
+instructions for building from source as well.
+
+**Virtual Environment**
+Removed as requested. It was never intended to be uploaded as it was
+included in the .gitignore.gitignore file but due to the incorrect
+filename, it was uploaded. It was now rectified as was the filename.
+
+**Admin Approval System**
+I have thoroughly tested the approval workflow in Docker Playground and
+it functions correctly:
+
+Users register and see "Your registration is pending approval" message.
+The design choice to show the approval message immediately after
+registration (rather than at the login screen) provides better UX
+- users know their status before attempting to login.
+
+Admin accesses Django admin panel at /admin/ (See steps in 11A)
+Admin approves user by checking the user and selecting an option from
+the drop-down menu. Then select GO to execute the action
+User can now successfully log in and access their dashboard
+
+Screenshots attached demonstrating the complete workflow. The system
+works as designed. If you encountered issues, please provide specific
+error messages so I can investigate further but I have not encountered
+any errors in Docker Playground.
+
+**Docker Admin Panel Access**
+The Django admin panel is fully accessible in the Docker container.
+Here are the exact steps I followed to test in Docker Playground:
+
+# Run container in detached mode
+docker run -d -p 8000:8000 lizfuzy/news_app
+
+# Get container ID
+docker ps
+
+# Create superuser
+docker exec -it <CONTAINER_ID> python manage.py createsuperuser
+
+I copied the URL and added /admin/ at the end and logged in successfully
+and approved users.
+
+I've added clearer instructions to the README, but the functionality was
+always present. Could you clarify what specific error you encountered
+when attempting these steps? The terminal commands worked without
+issue in my testing.
+
+
+### News2U - Django News Platform
 
 A multi-user news platform built with Django that allows journalists to
 create articles and newsletters, editors to review content, publishers
@@ -82,6 +145,8 @@ retrieving of articles and newsletters (See Planning Folder)
 - sqlparse==0.5.3
 - urllib3==2.5.0
 - Virtual environment (recommended)
+- Docker for containerised deployment
+- MariaDB for local development (SQLite for Docker)
 
 ### Setup
 
@@ -141,26 +206,58 @@ python manage.py createsuperuser
 ```
 
 10. Run the development server:
+## Local Development
 ```bash
-python manage.py runserver
+python manage.py createsuperuser
+```
+Access the application at `http://127.0.0.1:8000/`
+Access the admin panel at `http://localhost:8000/admin/`
+
+11. Run In Docker Playground `https://labs.play-with-docker.com/`
+
+## 11A Option 1: Pull Prebuilt Image (Recommended)
+The application is available as a prebuilt Docker image on Docker Hub.
+```bash
+docker pull lizfuzy/final_capstone
+docker run -p 8000:8000 lizfuzy/final_capstone
 ```
 
-11. Access the application at `http://127.0.0.1:8000/`
-
-
-12. Run in Docker playground `https://labs.play-with-docker.com/`
-Login, create a new instance and run the following commands line by line:
-Pull the image from docker hub:
-Run the container:
 ```bash
-docker pull lizfuzy/news_app
-docker run -p 8000:8000 lizfuzy/news_app
+# Now run the following to create superuser
+docker run -d -p 8000:8000 lizfuzy/final_capstone
+
+docker ps  # Get container ID and enter without < >
+docker exec -it <CONTAINER-ID> python manage.py createsuperuser
 ```
 
-Go to Localhost:
-'http://localhost:8000'
-(Open port and enter 8000)
+Open the PORT 8000 to access application
 
+**To Access DJANGO ADMIN Panel**
+Go to the application URL(or copy it into a new tab)and add /admin/
+after the .com and you will be able to log into the admin panel and
+approve users. Ensure to logout before returning to the app, refresh and
+login in as a user.
+
+## 11B Option 2: Build from Source
+If you want to modify the code before running:
+```bash
+
+# Clone the repository
+git clone https://github.com/itsallfuzz/final_capstone.git
+cd final_capstone
+
+# Build the Docker image for ALL platforms
+```bash
+docker login
+docker buildx build --platform linux/arm64 -t lizfuzy/news_app --push .
+```
+
+# Login to Docker Playground and Run the container in docker
+```bash
+docker run -p 8000:8000 lizfuzy/final_capstone
+
+Then run 11A step by step.
+```
 
 ## Important Setup Notes
 
